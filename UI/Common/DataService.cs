@@ -6,10 +6,10 @@ namespace PredictorUI.Common
 {
     internal class DataService : IDataService
     {
+
+        private readonly string connectionString = @"Data Source=C:\Users\Abhi\Documents\Schoolwork\Computer Science\ScorePredictor\PredictorUI\Database\CricketPredictorDB.db;";
         public bool AuthenticateUser(string username, string password)
         {
-
-            string connectionString = @"Data Source=C:\Users\Abhi\Documents\Schoolwork\Computer Science\CricketPredictor\Database\CricketPredictorDB.db;";
             try
             {
                 using (SqliteConnection conn = new SqliteConnection(connectionString))
@@ -36,7 +36,6 @@ namespace PredictorUI.Common
 
         public RegistrationResponseTypes RegisterNewUser(string username, string password, string email)
         {
-            string connectionString = @"Data Source=C:\Users\Abhi\Documents\Schoolwork\Computer Science\CricketPredictor\Database\CricketPredictorDB.db;";
             try
             {
                 using (SqliteConnection conn = new SqliteConnection(connectionString))
@@ -53,7 +52,7 @@ namespace PredictorUI.Common
                     {
 
                         conn.Close();
-                        return RegistrationResponseTypes.DuplicateUser;                        
+                        return RegistrationResponseTypes.DuplicateUser;
                     }
 
 
