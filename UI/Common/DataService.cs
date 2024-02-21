@@ -63,6 +63,7 @@ namespace PredictorUI.Common
                     insertCommand.Parameters.AddWithValue("@PASSWORD", password.Encrypt());
                     insertCommand.Parameters.AddWithValue("@EMAIL", email);
                     insertCommand.ExecuteNonQuery();
+                    conn.Close()
                     return RegistrationResponseTypes.Success;
                 }
             }
