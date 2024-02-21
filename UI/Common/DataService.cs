@@ -42,17 +42,26 @@ namespace PredictorUI.Common
                 {
                     conn.Open();
                     // You can execute SQL commands here using SQLiteCommand
-                    var existQuery = "SELECT COUNT(1) FROM USERACCOUNTS WHERE USERNAME=@USERNAME OR EMAIL = @EMAIL";
-                    var selectCommand = new SqliteCommand(existQuery, conn);
-                    selectCommand.Parameters.AddWithValue("@USERNAME", username);
-                    selectCommand.Parameters.AddWithValue("@EMAIL", email);
-                    var result = selectCommand.ExecuteScalar();
+                    var userExistQuery = "SELECT COUNT(1) FROM USERACCOUNTS WHERE USERNAME=@USERNAME;";
+                    var userSelectCommand = new SqliteCommand(userExistQuery, conn);
+                    userSelectCommand.Parameters.AddWithValue("@USERNAME", username);
+                    var userResult = userSelectCommand.ExecuteScalar();
 
-                    if (result == null || (long)result > 0)
+                    if (userResult == null || (long)userResult > 0)
                     {
 
                         conn.Close();
-                        return RegistrationResponseTypes.DuplicateUser;
+                        return RegistrationResponseTypes.DuplicateUsername;
+                    }
+
+                    var emailExistQuery = "SELECT COUNT(1) FROM USERACCONTS WHERE EMAIL = @EMAIL";
+                    var emailSelectCommand = new SqliteCommand(emailExistQuery, conn);
+                    emailSelectCommand.Parameters.AddWithValue("@EMAIL", email);
+                    var emailResult = emailSelectCommand.ExecuteScalar();
+                    if (emailResult == null || (long)emailResult > 0)
+                    {
+                        conn.Close();
+                        return RegistrationResponseTypes.DuplicateEmail;
                     }
 
 
