@@ -30,14 +30,17 @@ namespace PredictorUI
                 var result = dataService.RegisterNewUser(txt_UserName.Text, txt_Password.Text, txt_EmailAddress.Text);
                 switch (result)
                 {
-                    case ResponseTypes.RegistrationResponseTypes.DuplicateUser:
-                        MessageBox.Show("Username/email already in use");
+                    case ResponseTypes.RegistrationResponseTypes.DuplicateUsername:
+                        MessageBox.Show("Username already in use");
                         break;
                     case ResponseTypes.RegistrationResponseTypes.Success:
                         MessageBox.Show("Successfully registered!");
                         break;
                     case ResponseTypes.RegistrationResponseTypes.Failed:
                         MessageBox.Show("Registration failed");
+                        break;
+                    case ResponseTypes.RegistrationResponseTypes.DuplicateEmail:
+                        MessageBox.Show("Email already in use");
                         break;
 
                 }

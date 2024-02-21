@@ -10,9 +10,10 @@ namespace PredictorUI.Common
     {
         public enum RegistrationResponseTypes
         {
-            DuplicateUser = 0,
-            Failed = 1,
-            Success = 2
+            DuplicateUsername = 0,
+            DuplicateEmail = 1,
+            Failed = 2,
+            Success = 3
         }
     }
 }
