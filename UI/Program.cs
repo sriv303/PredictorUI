@@ -22,10 +22,10 @@ namespace PredictorUI
             // Get an instance of your main form from the service provider
            
 
-            //var loginForm = serviceProvider.GetRequiredService<LoginForm>();
-            //Application.Run(loginForm);
-            var regForm = serviceProvider.GetRequiredService<RegisterForm>();
-            Application.Run(regForm);
+            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
+            Application.Run(loginForm);
+            //var regForm = serviceProvider.GetRequiredService<RegisterForm>();
+            //Application.Run(regForm);
         }
 
         public static IServiceProvider ConfigureServices()
@@ -34,8 +34,8 @@ namespace PredictorUI
 
             // Register your application's services here. For example:
             services.AddTransient<IDataService, DataService>();
-            //services.AddSingleton<LoginForm>();
-            services.AddSingleton<RegisterForm>();
+            services.AddSingleton<LoginForm>();
+            //services.AddSingleton<RegisterForm>();
 
             return services.BuildServiceProvider();
         }
