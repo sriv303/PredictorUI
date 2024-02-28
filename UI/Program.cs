@@ -17,15 +17,17 @@ namespace PredictorUI
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            var serviceProvider = ConfigureServices();
+            //var serviceProvider = ConfigureServices();
 
             // Get an instance of your main form from the service provider
            
 
-            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
-            Application.Run(loginForm);
+            //var loginForm = serviceProvider.GetRequiredService<LoginForm>();
+            //Application.Run(loginForm);
             //var regForm = serviceProvider.GetRequiredService<RegisterForm>();
             //Application.Run(regForm);
+            //var simulForm = serviceProvider.GetRequiredService<SimulationForm>();
+            Application.Run(new SimulationForm());
         }
 
         public static IServiceProvider ConfigureServices()
