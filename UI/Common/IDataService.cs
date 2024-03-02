@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PredictorUI.Models;
 using static PredictorUI.Common.ResponseTypes;
 
 namespace PredictorUI.Common
@@ -10,6 +6,8 @@ namespace PredictorUI.Common
     public interface IDataService
     {
         bool AuthenticateUser(string username, string password);
+        Player GetPlayer(int id);
         RegistrationResponseTypes RegisterNewUser(string username, string password, string email);
+        List<Player> SearchPlayers(string playerName, bool isBowler = false);
     }
 }

@@ -28,122 +28,140 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            button3 = new Button();
-            listView1 = new ListView();
+            cmbAvailablePlayers1 = new ComboBox();
+            btnAddPlayer1 = new Button();
+            dgvSelectedPlayers1 = new DataGridView();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            cmbAvailablePlayers2 = new ComboBox();
+            dgvSelectedPlayers2 = new DataGridView();
+            btnAddPlayer2 = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).BeginInit();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers2).BeginInit();
             SuspendLayout();
             // 
-            // comboBox1
+            // cmbAvailablePlayers1
             // 
-            comboBox1.AutoCompleteCustomSource.AddRange(new string[] { "kedar", "abhi", "sri", "veera", "bob", "john" });
-            comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "kedar", "kedar2", "uefgif", "user3", "user4" });
-            comboBox1.Location = new Point(127, 151);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.Sorted = true;
-            comboBox1.TabIndex = 0;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            comboBox1.Enter += comboBox1_Enter;
+            cmbAvailablePlayers1.FormattingEnabled = true;
+            cmbAvailablePlayers1.Location = new Point(21, 62);
+            cmbAvailablePlayers1.Name = "cmbAvailablePlayers1";
+            cmbAvailablePlayers1.Size = new Size(296, 23);
+            cmbAvailablePlayers1.Sorted = true;
+            cmbAvailablePlayers1.TabIndex = 0;
+            cmbAvailablePlayers1.SelectedIndexChanged += cmbAvailablePlayers1_SelectedIndexChanged;
             // 
-            // comboBox2
+            // btnAddPlayer1
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(505, 151);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 1;
+            btnAddPlayer1.Location = new Point(355, 62);
+            btnAddPlayer1.Name = "btnAddPlayer1";
+            btnAddPlayer1.Size = new Size(75, 23);
+            btnAddPlayer1.TabIndex = 6;
+            btnAddPlayer1.Text = "Add Player";
+            btnAddPlayer1.UseVisualStyleBackColor = true;
+            btnAddPlayer1.Click += btnAddPlayer1_Click;
             // 
-            // button1
+            // dgvSelectedPlayers1
             // 
-            button1.Location = new Point(141, 419);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            dgvSelectedPlayers1.AllowUserToAddRows = false;
+            dgvSelectedPlayers1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSelectedPlayers1.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvSelectedPlayers1.Location = new Point(21, 129);
+            dgvSelectedPlayers1.MultiSelect = false;
+            dgvSelectedPlayers1.Name = "dgvSelectedPlayers1";
+            dgvSelectedPlayers1.ReadOnly = true;
+            dgvSelectedPlayers1.ShowEditingIcon = false;
+            dgvSelectedPlayers1.Size = new Size(409, 336);
+            dgvSelectedPlayers1.TabIndex = 9;
+            dgvSelectedPlayers1.UserDeletingRow += dgvSelectedPlayers1_UserDeletingRow;
             // 
-            // button2
+            // groupBox1
             // 
-            button2.Location = new Point(551, 419);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 3;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(cmbAvailablePlayers1);
+            groupBox1.Controls.Add(dgvSelectedPlayers1);
+            groupBox1.Controls.Add(btnAddPlayer1);
+            groupBox1.Location = new Point(12, 41);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(462, 471);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Team A";
             // 
-            // label1
+            // groupBox2
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(165, 375);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 4;
-            label1.Text = "label1";
+            groupBox2.BackColor = Color.White;
+            groupBox2.Controls.Add(cmbAvailablePlayers2);
+            groupBox2.Controls.Add(dgvSelectedPlayers2);
+            groupBox2.Controls.Add(btnAddPlayer2);
+            groupBox2.Location = new Point(608, 41);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(450, 465);
+            groupBox2.TabIndex = 11;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Team B";
             // 
-            // label2
+            // cmbAvailablePlayers2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(581, 373);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 5;
-            label2.Text = "label2";
+            cmbAvailablePlayers2.FormattingEnabled = true;
+            cmbAvailablePlayers2.Location = new Point(21, 62);
+            cmbAvailablePlayers2.Name = "cmbAvailablePlayers2";
+            cmbAvailablePlayers2.Size = new Size(298, 23);
+            cmbAvailablePlayers2.Sorted = true;
+            cmbAvailablePlayers2.TabIndex = 0;
+            cmbAvailablePlayers2.SelectedIndexChanged += cmbAvailablePlayers2_SelectedIndexChanged;
             // 
-            // button3
+            // dgvSelectedPlayers2
             // 
-            button3.Location = new Point(278, 153);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 6;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            dgvSelectedPlayers2.AllowUserToAddRows = false;
+            dgvSelectedPlayers2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSelectedPlayers2.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvSelectedPlayers2.Location = new Point(21, 129);
+            dgvSelectedPlayers2.MultiSelect = false;
+            dgvSelectedPlayers2.Name = "dgvSelectedPlayers2";
+            dgvSelectedPlayers2.ReadOnly = true;
+            dgvSelectedPlayers2.ShowEditingIcon = false;
+            dgvSelectedPlayers2.Size = new Size(409, 330);
+            dgvSelectedPlayers2.TabIndex = 9;
+            dgvSelectedPlayers2.UserDeletingRow += dgvSelectedPlayers2_UserDeletingRow;
             // 
-            // listView1
+            // btnAddPlayer2
             // 
-            listView1.Location = new Point(135, 240);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(121, 97);
-            listView1.TabIndex = 7;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.KeyDown += listView1_KeyDown;
+            btnAddPlayer2.Location = new Point(355, 62);
+            btnAddPlayer2.Name = "btnAddPlayer2";
+            btnAddPlayer2.Size = new Size(75, 23);
+            btnAddPlayer2.TabIndex = 6;
+            btnAddPlayer2.Text = "Add Player";
+            btnAddPlayer2.UseVisualStyleBackColor = true;
+            btnAddPlayer2.Click += btnAddPlayer2_Click;
             // 
             // SimulationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(listView1);
-            Controls.Add(button3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
+            ClientSize = new Size(1100, 558);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
             Name = "SimulationForm";
             Text = "SimulationForm";
+            Load += SimulationForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers2).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private Button button1;
-        private Button button2;
-        private Label label1;
-        private Label label2;
-        private Button button3;
-        private ListView listView1;
+        private ComboBox cmbAvailablePlayers1;
+        private Button btnAddPlayer1;
+        private DataGridView dgvSelectedPlayers1;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private ComboBox cmbAvailablePlayers2;
+        private DataGridView dgvSelectedPlayers2;
+        private Button btnAddPlayer2;
     }
 }

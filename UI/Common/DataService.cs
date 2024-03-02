@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using PredictorUI.Models;
 using static PredictorUI.Common.ResponseTypes;
 
 
@@ -76,13 +77,96 @@ namespace PredictorUI.Common
                     return RegistrationResponseTypes.Success;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return RegistrationResponseTypes.Failed;
             }
         }
 
-        //public void SearchPlayers(
+        public List<Player> SearchPlayers(string playerName, bool isBowler = false)
+        {
+            var players = new List<Player>();
 
+            if (!string.IsNullOrEmpty(playerName) && playerName.Length < 2) return players;
+
+            try
+            {
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
+                {
+                    conn.Open();
+                    var query = $"SELECT id,name,country,isBatsman,isBowler FROM PLAYERS WHERE 1 = 1 ";
+
+                    if(!string.IsNullOrEmpty(playerName)) 
+                    {
+                        query += $" AND NAME LIKE '%{playerName}%'";
+                    }
+                    if (isBowler)
+                    {
+                        query += " AND ISBOWLER = 1";
+                    }
+                    
+                    var selectCommand = new SqliteCommand(query, conn);
+
+                    var reader = selectCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        players.Add(new Player(reader));
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in player search", ex);
+            }
+
+            return players;
+        }
+       
+        public Player GetPlayer(int id)
+        {
+            try
+            {
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
+                {
+                    conn.Open();
+                    var query = $"SELECT id,name,country,isBatsman,isBowler FROM PLAYERS WHERE Id = @playerId";
+
+                    var selectCommand = new SqliteCommand(query, conn);
+
+                    selectCommand.Parameters.AddWithValue("@playerId", id);
+
+
+                    var reader = selectCommand.ExecuteReader();
+
+                    if (!reader.Read()) throw new InvalidOperationException("No records were returned.");
+
+                    var player = new Player(reader);
+
+                    conn.Close();
+
+                    return player;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in retrieving player", ex);
+            }
+        }
+
+
+        //public Player MapPlayer(SqliteDataReader reader)
+        //{
+        //    return new Player
+        //    {
+        //        Id = reader.GetInt32(0),
+        //        Name = reader.GetString(1),
+        //        Country = reader.GetString(2),
+        //        IsBatsman = reader.GetBoolean(3),
+        //        IsBowler = reader.GetBoolean(4)
+        //    };
+        //}
     }
 }
