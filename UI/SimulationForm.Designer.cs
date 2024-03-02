@@ -36,6 +36,7 @@
             cmbAvailablePlayers2 = new ComboBox();
             dgvSelectedPlayers2 = new DataGridView();
             btnAddPlayer2 = new Button();
+            btnConfirmSelection = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -74,6 +75,7 @@
             dgvSelectedPlayers1.ShowEditingIcon = false;
             dgvSelectedPlayers1.Size = new Size(409, 336);
             dgvSelectedPlayers1.TabIndex = 9;
+            dgvSelectedPlayers1.UserDeletedRow += dgvSelectedPlayers1_UserDeletedRow;
             dgvSelectedPlayers1.UserDeletingRow += dgvSelectedPlayers1_UserDeletingRow;
             // 
             // groupBox1
@@ -124,6 +126,7 @@
             dgvSelectedPlayers2.ShowEditingIcon = false;
             dgvSelectedPlayers2.Size = new Size(409, 330);
             dgvSelectedPlayers2.TabIndex = 9;
+            dgvSelectedPlayers2.UserDeletedRow += dgvSelectedPlayers2_UserDeletedRow;
             dgvSelectedPlayers2.UserDeletingRow += dgvSelectedPlayers2_UserDeletingRow;
             // 
             // btnAddPlayer2
@@ -136,11 +139,24 @@
             btnAddPlayer2.UseVisualStyleBackColor = true;
             btnAddPlayer2.Click += btnAddPlayer2_Click;
             // 
+            // btnConfirmSelection
+            // 
+            btnConfirmSelection.BackColor = Color.Green;
+            btnConfirmSelection.Enabled = false;
+            btnConfirmSelection.ForeColor = SystemColors.ButtonFace;
+            btnConfirmSelection.Location = new Point(462, 531);
+            btnConfirmSelection.Name = "btnConfirmSelection";
+            btnConfirmSelection.Size = new Size(164, 57);
+            btnConfirmSelection.TabIndex = 12;
+            btnConfirmSelection.Text = "Confirm Selection";
+            btnConfirmSelection.UseVisualStyleBackColor = false;
+            // 
             // SimulationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1100, 558);
+            ClientSize = new Size(1100, 626);
+            Controls.Add(btnConfirmSelection);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "SimulationForm";
@@ -163,5 +179,6 @@
         private ComboBox cmbAvailablePlayers2;
         private DataGridView dgvSelectedPlayers2;
         private Button btnAddPlayer2;
+        private Button btnConfirmSelection;
     }
 }

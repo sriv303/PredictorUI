@@ -77,7 +77,7 @@ namespace PredictorUI
             {
                 availablePlayersBindings1.Add((Player)dgvSelectedPlayers1.SelectedRows[0].DataBoundItem);
                 availablePlayersBindings2.Add((Player)dgvSelectedPlayers1.SelectedRows[0].DataBoundItem);
-                ResetFocus();
+                
             }
         }
 
@@ -114,7 +114,7 @@ namespace PredictorUI
             {
                 availablePlayersBindings1.Add((Player)dgvSelectedPlayers2.SelectedRows[0].DataBoundItem);
                 availablePlayersBindings2.Add((Player)dgvSelectedPlayers2.SelectedRows[0].DataBoundItem);
-                ResetFocus();
+                
             }
         }
 
@@ -154,7 +154,19 @@ namespace PredictorUI
         {
             cmbAvailablePlayers1.SelectedIndex = -1;
             cmbAvailablePlayers2.SelectedIndex = -1;
+            int cntPlayers1 = selectedPlayersBindings1.Count;
+            int cntPlayers2 = selectedPlayersBindings2.Count;
+            btnConfirmSelection.Enabled = (cntPlayers1 == 11 && cntPlayers2 == 11);
         }
 
+        private void dgvSelectedPlayers2_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            ResetFocus();
+        }
+
+        private void dgvSelectedPlayers1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            ResetFocus();
+        }
     }
 }
