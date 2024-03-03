@@ -198,6 +198,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1242, 652);
             Controls.Add(btnAutoSelect);
             Controls.Add(btnConfirmSelection);
