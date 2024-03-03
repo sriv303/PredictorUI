@@ -156,17 +156,35 @@ namespace PredictorUI.Common
             }
         }
 
+        public List<Venue> GetVenues()
+        {
+            var venues = new List<Venue>();
+            try
+            {
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
+                {
+                    conn.Open();
+                    var query = $"SELECT id, name, longName, country FROM venues";
 
-        //public Player MapPlayer(SqliteDataReader reader)
-        //{
-        //    return new Player
-        //    {
-        //        Id = reader.GetInt32(0),
-        //        Name = reader.GetString(1),
-        //        Country = reader.GetString(2),
-        //        IsBatsman = reader.GetBoolean(3),
-        //        IsBowler = reader.GetBoolean(4)
-        //    };
-        //}
+               
+                    var selectCommand = new SqliteCommand(query, conn);
+
+                    var reader = selectCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        venues.Add(new Venue(reader));
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in venue search", ex);
+            }
+
+            return venues;
+        }
     }
 }

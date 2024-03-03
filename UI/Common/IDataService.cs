@@ -7,6 +7,7 @@ namespace PredictorUI.Common
     {
         bool AuthenticateUser(string username, string password);
         Player GetPlayer(int id);
+        List<Venue> GetVenues();
         RegistrationResponseTypes RegisterNewUser(string username, string password, string email);
         List<Player> SearchPlayers(string playerName, bool isBowler = false);
     }

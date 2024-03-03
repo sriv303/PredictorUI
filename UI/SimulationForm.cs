@@ -22,6 +22,12 @@ namespace PredictorUI
 
         private void SimulationForm_Load(object sender, EventArgs e)
         {
+            var venues = dataService.GetVenues();
+            cmbVenue.DataSource = venues;
+            cmbVenue.ValueMember = "Id";
+            cmbVenue.DisplayMember = "Profile";
+            cmbVenue.SelectedIndex = -1;
+
             var players = dataService.SearchPlayers("");
 
             foreach (var player in players)
@@ -150,11 +156,10 @@ namespace PredictorUI
             cmbAvailablePlayers2.SelectedIndex = -1;
             int cntPlayers1 = selectedPlayersBindings1.Count;
             int cntPlayers2 = selectedPlayersBindings2.Count;
-            btnConfirmSelection.Enabled = (cntPlayers1 == 11 && cntPlayers2 == 11);
+            btnConfirmSelection.Enabled = (cntPlayers1 == 11 && cntPlayers2 == 11 && cmbVenue.SelectedIndex!=-1);
 
             lblPlayerCount1.Text = $"{selectedPlayersBindings1.Count} of 11 players added";
             lblPlayerCount2.Text = $"{selectedPlayersBindings2.Count} of 11 players added";
-
         }
 
         private void dgvSelectedPlayers2_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
@@ -175,8 +180,8 @@ namespace PredictorUI
             var rnd = new Random();
             var cnt = 0;
 
-            var batsmen = availablePlayersBindings1.Where(p => p.IsBatsman && !p.IsBowler).ToArray();            
-            
+            var batsmen = availablePlayersBindings1.Where(p => p.IsBatsman && !p.IsBowler).ToArray();
+
             while (cnt < 12)
             {
                 var p1 = batsmen[rnd.Next(batsmen.Count())];
@@ -191,10 +196,10 @@ namespace PredictorUI
                 {
                     selectedPlayersBindings2.Add(batsmen[rnd.Next(batsmen.Count())]);
                     cnt++;
-                }                
+                }
             }
             cnt = 0;
-            
+
             var bowlers = availablePlayersBindings1.Where(p => p.IsBowler).ToArray();
 
             while (cnt < 10)
@@ -216,6 +221,11 @@ namespace PredictorUI
 
             //btnConfirmSelection.Enabled = true;
             UpdateControlsState();
+        }
+
+        private void cmbVenue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

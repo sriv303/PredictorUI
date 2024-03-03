@@ -40,6 +40,8 @@
             btnAddPlayer2 = new Button();
             btnConfirmSelection = new Button();
             btnAutoSelect = new Button();
+            cmbVenue = new ComboBox();
+            lblVenue = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -92,7 +94,7 @@
             groupBox1.Controls.Add(cmbAvailablePlayers1);
             groupBox1.Controls.Add(dgvSelectedPlayers1);
             groupBox1.Controls.Add(btnAddPlayer1);
-            groupBox1.Location = new Point(32, 41);
+            groupBox1.Location = new Point(32, 118);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(576, 495);
             groupBox1.TabIndex = 0;
@@ -115,7 +117,7 @@
             groupBox2.Controls.Add(cmbAvailablePlayers2);
             groupBox2.Controls.Add(dgvSelectedPlayers2);
             groupBox2.Controls.Add(btnAddPlayer2);
-            groupBox2.Location = new Point(644, 41);
+            groupBox2.Location = new Point(644, 118);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(560, 495);
             groupBox2.TabIndex = 11;
@@ -175,7 +177,7 @@
             btnConfirmSelection.BackColor = Color.Green;
             btnConfirmSelection.Enabled = false;
             btnConfirmSelection.ForeColor = SystemColors.ButtonFace;
-            btnConfirmSelection.Location = new Point(644, 557);
+            btnConfirmSelection.Location = new Point(644, 629);
             btnConfirmSelection.Name = "btnConfirmSelection";
             btnConfirmSelection.Size = new Size(164, 57);
             btnConfirmSelection.TabIndex = 12;
@@ -186,7 +188,7 @@
             // 
             btnAutoSelect.BackColor = Color.Green;
             btnAutoSelect.ForeColor = SystemColors.ButtonFace;
-            btnAutoSelect.Location = new Point(444, 557);
+            btnAutoSelect.Location = new Point(444, 629);
             btnAutoSelect.Name = "btnAutoSelect";
             btnAutoSelect.Size = new Size(164, 57);
             btnAutoSelect.TabIndex = 13;
@@ -194,12 +196,35 @@
             btnAutoSelect.UseVisualStyleBackColor = false;
             btnAutoSelect.Click += btnAutoSelect_Click;
             // 
+            // cmbVenue
+            // 
+            cmbVenue.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbVenue.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cmbVenue.FormattingEnabled = true;
+            cmbVenue.Location = new Point(77, 62);
+            cmbVenue.Name = "cmbVenue";
+            cmbVenue.Size = new Size(292, 23);
+            cmbVenue.Sorted = true;
+            cmbVenue.TabIndex = 14;
+            cmbVenue.SelectedIndexChanged += cmbVenue_SelectedIndexChanged;
+            // 
+            // lblVenue
+            // 
+            lblVenue.AutoSize = true;
+            lblVenue.Location = new Point(32, 65);
+            lblVenue.Name = "lblVenue";
+            lblVenue.Size = new Size(39, 15);
+            lblVenue.TabIndex = 15;
+            lblVenue.Text = "Venue";
+            // 
             // SimulationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(1242, 652);
+            ClientSize = new Size(1242, 728);
+            Controls.Add(lblVenue);
+            Controls.Add(cmbVenue);
             Controls.Add(btnAutoSelect);
             Controls.Add(btnConfirmSelection);
             Controls.Add(groupBox2);
@@ -214,6 +239,7 @@
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers2).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -230,5 +256,7 @@
         private Label lblPlayerCount1;
         private Label lblPlayerCount2;
         private Button btnAutoSelect;
+        private ComboBox cmbVenue;
+        private Label lblVenue;
     }
 }
