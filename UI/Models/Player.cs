@@ -22,7 +22,7 @@ namespace PredictorUI.Models
                 return profile;
             }
         }
-        public string PlayerProfile => $"{Name} ({Country}) {PlayerType}";
+        public string PlayerProfile => $"{Name} ({Country}) - {PlayerType}";
         public Player()
         {
         }

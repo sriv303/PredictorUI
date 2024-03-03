@@ -32,11 +32,14 @@
             btnAddPlayer1 = new Button();
             dgvSelectedPlayers1 = new DataGridView();
             groupBox1 = new GroupBox();
+            lblPlayerCount1 = new Label();
             groupBox2 = new GroupBox();
+            lblPlayerCount2 = new Label();
             cmbAvailablePlayers2 = new ComboBox();
             dgvSelectedPlayers2 = new DataGridView();
             btnAddPlayer2 = new Button();
             btnConfirmSelection = new Button();
+            btnAutoSelect = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -66,6 +69,10 @@
             // dgvSelectedPlayers1
             // 
             dgvSelectedPlayers1.AllowUserToAddRows = false;
+            dgvSelectedPlayers1.AllowUserToOrderColumns = true;
+            dgvSelectedPlayers1.AllowUserToResizeColumns = false;
+            dgvSelectedPlayers1.AllowUserToResizeRows = false;
+            dgvSelectedPlayers1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSelectedPlayers1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSelectedPlayers1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvSelectedPlayers1.Location = new Point(21, 129);
@@ -73,7 +80,7 @@
             dgvSelectedPlayers1.Name = "dgvSelectedPlayers1";
             dgvSelectedPlayers1.ReadOnly = true;
             dgvSelectedPlayers1.ShowEditingIcon = false;
-            dgvSelectedPlayers1.Size = new Size(409, 336);
+            dgvSelectedPlayers1.Size = new Size(507, 340);
             dgvSelectedPlayers1.TabIndex = 9;
             dgvSelectedPlayers1.UserDeletedRow += dgvSelectedPlayers1_UserDeletedRow;
             dgvSelectedPlayers1.UserDeletingRow += dgvSelectedPlayers1_UserDeletingRow;
@@ -81,28 +88,48 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(lblPlayerCount1);
             groupBox1.Controls.Add(cmbAvailablePlayers1);
             groupBox1.Controls.Add(dgvSelectedPlayers1);
             groupBox1.Controls.Add(btnAddPlayer1);
-            groupBox1.Location = new Point(12, 41);
+            groupBox1.Location = new Point(32, 41);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(462, 471);
+            groupBox1.Size = new Size(576, 495);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Team A";
             // 
+            // lblPlayerCount1
+            // 
+            lblPlayerCount1.AutoSize = true;
+            lblPlayerCount1.Location = new Point(21, 103);
+            lblPlayerCount1.Name = "lblPlayerCount1";
+            lblPlayerCount1.Size = new Size(73, 15);
+            lblPlayerCount1.TabIndex = 10;
+            lblPlayerCount1.Text = "Player count";
+            // 
             // groupBox2
             // 
             groupBox2.BackColor = Color.White;
+            groupBox2.Controls.Add(lblPlayerCount2);
             groupBox2.Controls.Add(cmbAvailablePlayers2);
             groupBox2.Controls.Add(dgvSelectedPlayers2);
             groupBox2.Controls.Add(btnAddPlayer2);
-            groupBox2.Location = new Point(608, 41);
+            groupBox2.Location = new Point(644, 41);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(450, 465);
+            groupBox2.Size = new Size(560, 495);
             groupBox2.TabIndex = 11;
             groupBox2.TabStop = false;
             groupBox2.Text = "Team B";
+            // 
+            // lblPlayerCount2
+            // 
+            lblPlayerCount2.AutoSize = true;
+            lblPlayerCount2.Location = new Point(21, 103);
+            lblPlayerCount2.Name = "lblPlayerCount2";
+            lblPlayerCount2.Size = new Size(73, 15);
+            lblPlayerCount2.TabIndex = 10;
+            lblPlayerCount2.Text = "Player count";
             // 
             // cmbAvailablePlayers2
             // 
@@ -117,6 +144,10 @@
             // dgvSelectedPlayers2
             // 
             dgvSelectedPlayers2.AllowUserToAddRows = false;
+            dgvSelectedPlayers2.AllowUserToOrderColumns = true;
+            dgvSelectedPlayers2.AllowUserToResizeColumns = false;
+            dgvSelectedPlayers2.AllowUserToResizeRows = false;
+            dgvSelectedPlayers2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSelectedPlayers2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSelectedPlayers2.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvSelectedPlayers2.Location = new Point(21, 129);
@@ -124,7 +155,7 @@
             dgvSelectedPlayers2.Name = "dgvSelectedPlayers2";
             dgvSelectedPlayers2.ReadOnly = true;
             dgvSelectedPlayers2.ShowEditingIcon = false;
-            dgvSelectedPlayers2.Size = new Size(409, 330);
+            dgvSelectedPlayers2.Size = new Size(487, 340);
             dgvSelectedPlayers2.TabIndex = 9;
             dgvSelectedPlayers2.UserDeletedRow += dgvSelectedPlayers2_UserDeletedRow;
             dgvSelectedPlayers2.UserDeletingRow += dgvSelectedPlayers2_UserDeletingRow;
@@ -144,18 +175,31 @@
             btnConfirmSelection.BackColor = Color.Green;
             btnConfirmSelection.Enabled = false;
             btnConfirmSelection.ForeColor = SystemColors.ButtonFace;
-            btnConfirmSelection.Location = new Point(462, 531);
+            btnConfirmSelection.Location = new Point(644, 557);
             btnConfirmSelection.Name = "btnConfirmSelection";
             btnConfirmSelection.Size = new Size(164, 57);
             btnConfirmSelection.TabIndex = 12;
             btnConfirmSelection.Text = "Confirm Selection";
             btnConfirmSelection.UseVisualStyleBackColor = false;
             // 
+            // btnAutoSelect
+            // 
+            btnAutoSelect.BackColor = Color.Green;
+            btnAutoSelect.ForeColor = SystemColors.ButtonFace;
+            btnAutoSelect.Location = new Point(444, 557);
+            btnAutoSelect.Name = "btnAutoSelect";
+            btnAutoSelect.Size = new Size(164, 57);
+            btnAutoSelect.TabIndex = 13;
+            btnAutoSelect.Text = "Auto Select Teams";
+            btnAutoSelect.UseVisualStyleBackColor = false;
+            btnAutoSelect.Click += btnAutoSelect_Click;
+            // 
             // SimulationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1100, 626);
+            ClientSize = new Size(1242, 652);
+            Controls.Add(btnAutoSelect);
             Controls.Add(btnConfirmSelection);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -164,7 +208,9 @@
             Load += SimulationForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).EndInit();
             groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers2).EndInit();
             ResumeLayout(false);
         }
@@ -180,5 +226,8 @@
         private DataGridView dgvSelectedPlayers2;
         private Button btnAddPlayer2;
         private Button btnConfirmSelection;
+        private Label lblPlayerCount1;
+        private Label lblPlayerCount2;
+        private Button btnAutoSelect;
     }
 }
