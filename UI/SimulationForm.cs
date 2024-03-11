@@ -162,6 +162,12 @@ namespace PredictorUI
 
             lblPlayerCount1.Text = $"{selectedPlayersBindings1.Count} of 11 players added";
             lblPlayerCount2.Text = $"{selectedPlayersBindings2.Count} of 11 players added";
+
+            aCompl.Clear();
+            aCompl.AddRange(availablePlayersBindings1.Select(p => p.PlayerProfile).ToArray());
+
+            cmbAvailablePlayers1.AutoCompleteCustomSource = cmbAvailablePlayers1.AutoCompleteCustomSource = aCompl;
+
         }
 
         private void dgvSelectedPlayers2_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
@@ -184,43 +190,62 @@ namespace PredictorUI
             var rnd = new Random();
             var cnt = 0;
 
-            var batsmen = availablePlayersBindings1.Where(p => p.IsBatsman && !p.IsBowler).ToArray();
+            var batsmen = availablePlayersBindings1.Where(p => p.IsBatsman && !p.IsBowler).ToList();
 
             while (cnt < 12)
             {
                 var p1 = batsmen[rnd.Next(batsmen.Count())];
                 if (selectedPlayersBindings1.Count < 6 && !selectedPlayersBindings1.Any(p => p.Id == p1.Id))
                 {
-                    selectedPlayersBindings1.Add(batsmen[rnd.Next(batsmen.Count())]);
+                    selectedPlayersBindings1.Add(p1);
+                    availablePlayersBindings1.Remove(p1);
+                    availablePlayersBindings2.Remove(p1);
+                    batsmen.Remove(p1);
                     cnt++;
                 }
 
                 p1 = batsmen[rnd.Next(batsmen.Count())];
                 if (selectedPlayersBindings2.Count < 6 && !selectedPlayersBindings2.Any(p => p.Id == p1.Id))
                 {
-                    selectedPlayersBindings2.Add(batsmen[rnd.Next(batsmen.Count())]);
+                    selectedPlayersBindings2.Add(p1);
+                    availablePlayersBindings1.Remove(p1);
+                    availablePlayersBindings2.Remove(p1);
+                    batsmen.Remove(p1);
                     cnt++;
                 }
             }
             cnt = 0;
 
-            var bowlers = availablePlayersBindings1.Where(p => p.IsBowler).ToArray();
+            var bowlers = availablePlayersBindings1.Where(p => p.IsBowler).ToList();
 
             while (cnt < 10)
             {
                 var p1 = bowlers[rnd.Next(bowlers.Count())];
                 if (selectedPlayersBindings1.Count < 11 && !selectedPlayersBindings1.Any(p => p.Id == p1.Id))
                 {
-                    selectedPlayersBindings1.Add(bowlers[rnd.Next(bowlers.Count())]);
+                    selectedPlayersBindings1.Add(p1);
+                    availablePlayersBindings1.Remove(p1);
+                    availablePlayersBindings2.Remove(p1);
+                    bowlers.Remove(p1);
                     cnt++;
                 }
 
                 p1 = bowlers[rnd.Next(bowlers.Count())];
                 if (selectedPlayersBindings2.Count < 11 && !selectedPlayersBindings2.Any(p => p.Id == p1.Id))
                 {
-                    selectedPlayersBindings2.Add(bowlers[rnd.Next(bowlers.Count())]);
+                    selectedPlayersBindings2.Add(p1);
+                    availablePlayersBindings1.Remove(p1);
+                    availablePlayersBindings2.Remove(p1);
+                    bowlers.Remove(p1);
                     cnt++;
                 }
+            }
+
+
+
+            if (selectedPlayersBindings1.Select(p => p.Id).Distinct().Count() != 11 || selectedPlayersBindings2.Select(p => p.Id).Distinct().Count() != 11)
+            {
+                MessageBox.Show("There are some dulicate players in the auto selection. Please try again");
             }
 
             //btnConfirmSelection.Enabled = true;
@@ -229,7 +254,7 @@ namespace PredictorUI
 
         private void cmbVenue_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            UpdateControlsState();
         }
 
         private void btnConfirmSelection_Click(object sender, EventArgs e)
