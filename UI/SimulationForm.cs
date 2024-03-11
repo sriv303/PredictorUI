@@ -14,10 +14,12 @@ namespace PredictorUI
         private AutoCompleteStringCollection aCompl = [];
 
         private readonly IDataService dataService;
+        private readonly MatchService matchService;
         public SimulationForm()
         {
             InitializeComponent();
             this.dataService = new DataService();
+            this.matchService = new MatchService();
         }
 
         private void SimulationForm_Load(object sender, EventArgs e)
@@ -156,7 +158,7 @@ namespace PredictorUI
             cmbAvailablePlayers2.SelectedIndex = -1;
             int cntPlayers1 = selectedPlayersBindings1.Count;
             int cntPlayers2 = selectedPlayersBindings2.Count;
-            btnConfirmSelection.Enabled = (cntPlayers1 == 11 && cntPlayers2 == 11 && cmbVenue.SelectedIndex!=-1);
+            btnConfirmSelection.Enabled = (cntPlayers1 == 11 && cntPlayers2 == 11 && cmbVenue.SelectedIndex != -1);
 
             lblPlayerCount1.Text = $"{selectedPlayersBindings1.Count} of 11 players added";
             lblPlayerCount2.Text = $"{selectedPlayersBindings2.Count} of 11 players added";
@@ -174,6 +176,8 @@ namespace PredictorUI
 
         private void btnAutoSelect_Click(object sender, EventArgs e)
         {
+            var matches = dataService.SearchMatches();
+
             selectedPlayersBindings1.Clear();
             selectedPlayersBindings2.Clear();
 
@@ -225,6 +229,26 @@ namespace PredictorUI
 
         private void cmbVenue_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnConfirmSelection_Click(object sender, EventArgs e)
+        {
+            var match = new MatchDetails
+            {
+                MatchDate = DateTime.Now,
+                TeamABatsmen = selectedPlayersBindings1.Select(p => p.Name).ToArray(),
+                TeamABowlers = selectedPlayersBindings1.Where(p => p.IsBowler).Select(p => p.Name).ToArray(),
+                TeamBBatsmen = selectedPlayersBindings2.Select(p => p.Name).ToArray(),
+                TeamBBowlers = selectedPlayersBindings2.Where(p => p.IsBowler).Select(p => p.Name).ToArray(),
+                UserId = 1, //todo
+                VenueId = ((Venue)cmbVenue.SelectedItem).Id
+            };
+
+            var matchId = dataService.CreateNewMatch(match);
+
+            MessageBox.Show(matchId.ToString());
+            //matchService.PredictScore(matchInputs);
 
         }
     }

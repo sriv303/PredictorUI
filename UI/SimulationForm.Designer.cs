@@ -183,6 +183,7 @@
             btnConfirmSelection.TabIndex = 12;
             btnConfirmSelection.Text = "Confirm Selection";
             btnConfirmSelection.UseVisualStyleBackColor = false;
+            btnConfirmSelection.Click += btnConfirmSelection_Click;
             // 
             // btnAutoSelect
             // 

@@ -1,6 +1,10 @@
 ﻿using Microsoft.Data.Sqlite;
+using Newtonsoft.Json;
 using PredictorUI.Models;
+using System.Drawing;
 using static PredictorUI.Common.ResponseTypes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace PredictorUI.Common
@@ -96,7 +100,7 @@ namespace PredictorUI.Common
                     conn.Open();
                     var query = $"SELECT id,name,country,isBatsman,isBowler FROM PLAYERS WHERE 1 = 1 ";
 
-                    if(!string.IsNullOrEmpty(playerName)) 
+                    if (!string.IsNullOrEmpty(playerName))
                     {
                         query += $" AND NAME LIKE '%{playerName}%'";
                     }
@@ -104,7 +108,7 @@ namespace PredictorUI.Common
                     {
                         query += " AND ISBOWLER = 1";
                     }
-                    
+
                     var selectCommand = new SqliteCommand(query, conn);
 
                     var reader = selectCommand.ExecuteReader();
@@ -124,7 +128,7 @@ namespace PredictorUI.Common
 
             return players;
         }
-       
+
         public Player GetPlayer(int id)
         {
             try
@@ -166,7 +170,7 @@ namespace PredictorUI.Common
                     conn.Open();
                     var query = $"SELECT id, name, longName, country FROM venues";
 
-               
+
                     var selectCommand = new SqliteCommand(query, conn);
 
                     var reader = selectCommand.ExecuteReader();
@@ -185,6 +189,107 @@ namespace PredictorUI.Common
             }
 
             return venues;
+        }
+
+        public int CreateNewMatch(MatchDetails details)
+        {
+            try
+            {
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
+                {
+                    conn.Open();
+                    //insert new user account into database//
+                    var insertQuery = "INSERT INTO MatchDetails (id,matchDate,userId,venueId,teamABatsmen,teamABowlers,teamBBatsmen,teamBBowlers) " +
+                "VALUES (NULL, @matchDate, @userId, @venueId, @teamABatsmen, @teamABowlers ,@teamBBatsmen, @teamBBowlers)";
+
+                    var insertCommand = new SqliteCommand(insertQuery, conn);
+
+                    insertCommand.Parameters.AddWithValue("@matchDate", DateTime.Now.ToString("G"));
+                    insertCommand.Parameters.AddWithValue("@userId", details.UserId);
+                    insertCommand.Parameters.AddWithValue("@venueId", details.VenueId);
+                    insertCommand.Parameters.AddWithValue("@teamABatsmen", SerialisePlayers(details.TeamABatsmen));
+                    insertCommand.Parameters.AddWithValue("@teamABowlers", SerialisePlayers(details.TeamABowlers));
+                    insertCommand.Parameters.AddWithValue("@teamBBatsmen", SerialisePlayers(details.TeamBBatsmen));
+                    insertCommand.Parameters.AddWithValue("@teamBBowlers", SerialisePlayers(details.TeamBBowlers));
+
+                    insertCommand.ExecuteNonQuery();
+
+                    var idCommand = conn.CreateCommand();
+                    idCommand.CommandText = "SELECT last_insert_rowid()";
+                    int lastId = Convert.ToInt32(idCommand.ExecuteScalar());
+                    conn.Close();
+                    return lastId;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in creating new matchDetails record", ex);
+            }
+
+        }
+
+        public List<MatchDetails> SearchMatches(int? userId, int? venueId, DateTime? fromDate, DateTime? toDate)
+        {
+            var matches = new List<MatchDetails>();
+            try
+            {
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
+                {
+                    conn.Open();
+
+                    var selectQuery = "SELECT id,matchDate,userId,venueId,teamABatsmen,teamABowlers,teamBBatsmen,teamBBowlers, scoreCard FROM MatchDetails where 1=1";
+                    var searchCommand = new SqliteCommand();
+
+
+                    if (userId.HasValue)
+                    {
+                        selectQuery += " and userId = @userId";
+                        searchCommand.Parameters.AddWithValue("@userId", userId);
+                    }
+                    if (venueId.HasValue)
+                    {
+                        selectQuery += " and venueId = @venueId";
+                        searchCommand.Parameters.AddWithValue("@venueId", venueId);
+                    }
+
+                    if (fromDate.HasValue)
+                    {
+                        selectQuery += " and date(matchDate) >= @fromDate";
+                        searchCommand.Parameters.AddWithValue("@fromDate", fromDate.Value.ToShortDateString());
+                    }
+
+                    if (toDate.HasValue)
+                    {
+                        selectQuery += " and date(matchDate) <= @toDate";
+                        searchCommand.Parameters.AddWithValue("@toDate", toDate.Value.ToShortDateString());
+                    }
+
+                    searchCommand.Connection = conn;
+                    searchCommand.CommandText = selectQuery;
+
+                    var reader = searchCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        matches.Add(new MatchDetails(reader));
+                    }
+
+                    conn.Close();
+                    return matches;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in creating new matchDetails record", ex);
+            }
+
+        }
+
+        public string SerialisePlayers(string[] players)
+        {
+            var settings = new JsonSerializerSettings();
+            settings.StringEscapeHandling = StringEscapeHandling.EscapeHtml;
+
+            return JsonConvert.SerializeObject(players);
         }
     }
 }
