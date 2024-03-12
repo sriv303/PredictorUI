@@ -273,8 +273,16 @@ namespace PredictorUI
             var matchId = dataService.CreateNewMatch(match);
 
             MessageBox.Show(matchId.ToString());
-            matchService.PredictScore(matchId);
+            var result = matchService.PredictScore(matchId);
+            MessageBox.Show(result);
 
+        }
+
+        private void btnMatchReport_Click(object sender, EventArgs e)
+        {
+            var matchDetails = dataService.SearchMatches();
+
+            var matchReport = matchService.TranformScoreCard(matchDetails.First());
         }
     }
 }

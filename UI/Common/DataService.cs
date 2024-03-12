@@ -237,7 +237,9 @@ namespace PredictorUI.Common
                 {
                     conn.Open();
 
-                    var selectQuery = "SELECT id,matchDate,userId,venueId,teamABatsmen,teamABowlers,teamBBatsmen,teamBBowlers, scoreCard FROM MatchDetails where 1=1";
+                    var selectQuery = "SELECT a.id,matchDate,userId,venueId,teamABatsmen,teamABowlers,teamBBatsmen,teamBBowlers, scoreCard,b.name, b.longName, b.country " +
+                                        "FROM MatchDetails a inner join Venues b on a.venueId = b.Id where 1=1";
+
                     var searchCommand = new SqliteCommand();
 
 
@@ -279,7 +281,7 @@ namespace PredictorUI.Common
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error in creating new matchDetails record", ex);
+                throw new Exception($"Error in searching matchDetails records", ex);
             }
 
         }

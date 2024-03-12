@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PredictorUI.Models;
 using System.Diagnostics;
 
 namespace PredictorUI.Common
@@ -6,11 +7,13 @@ namespace PredictorUI.Common
     public class MatchService
     {
         string workingDirectory = "C:\\Users\\Abhi\\Documents\\Schoolwork\\Computer Science\\ScorePredictor\\Server";
-        public void PredictScore(int id)
+        public string PredictScore(int id)
         {
-            var settings = new JsonSerializerSettings();
-            settings.StringEscapeHandling = StringEscapeHandling.EscapeHtml;
-            RunPythonScriptAndGetOutput(id);
+            var settings = new JsonSerializerSettings
+            {
+                StringEscapeHandling = StringEscapeHandling.EscapeHtml
+            };
+            return RunPythonScriptAndGetOutput(id);
         }
 
         private string RunPythonScriptAndGetOutput(int matchId)
@@ -23,7 +26,7 @@ namespace PredictorUI.Common
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true,
-                WorkingDirectory= workingDirectory
+                WorkingDirectory = workingDirectory
 
             };
 
@@ -36,6 +39,29 @@ namespace PredictorUI.Common
                     return result;
                 }
             }
+        }
+
+        public MatchReport TranformScoreCard(MatchDetails matchDetails)
+        {
+
+
+            var scoreCard = matchDetails.ScoreCard;
+            var balls = JsonConvert.DeserializeObject<List<Ball>>(scoreCard);
+
+            var firstInningsOvers = balls.Where(b => b.Innings == 1).GroupBy(i => i.OverNumber).Select(s => new Over { Balls = s.ToList() }).ToList();
+            var secondInningsOvers = balls.Where(b => b.Innings == 2).GroupBy(i => i.OverNumber).Select(s => new Over { Balls = s.ToList() }).ToList();
+
+            var matchReport = new MatchReport
+            {
+                MatchDate = matchDetails.MatchDate,
+                MatchId = matchDetails.Id,
+                VenueName = matchDetails.Venue.Name,
+                TeamAInnings = new Innings { Overs = firstInningsOvers },
+                TeamBInnings = new Innings { Overs = secondInningsOvers }
+            };
+
+            return matchReport;
+
         }
 
 

@@ -42,6 +42,7 @@
             btnAutoSelect = new Button();
             cmbVenue = new ComboBox();
             lblVenue = new Label();
+            btnMatchReport = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -218,12 +219,23 @@
             lblVenue.TabIndex = 15;
             lblVenue.Text = "Venue";
             // 
+            // btnMatchReport
+            // 
+            btnMatchReport.Location = new Point(891, 629);
+            btnMatchReport.Name = "btnMatchReport";
+            btnMatchReport.Size = new Size(183, 57);
+            btnMatchReport.TabIndex = 16;
+            btnMatchReport.Text = "Show Match Report";
+            btnMatchReport.UseVisualStyleBackColor = true;
+            btnMatchReport.Click += btnMatchReport_Click;
+            // 
             // SimulationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1242, 728);
+            Controls.Add(btnMatchReport);
             Controls.Add(lblVenue);
             Controls.Add(cmbVenue);
             Controls.Add(btnAutoSelect);
@@ -259,5 +271,6 @@
         private Button btnAutoSelect;
         private ComboBox cmbVenue;
         private Label lblVenue;
+        private Button btnMatchReport;
     }
 }
