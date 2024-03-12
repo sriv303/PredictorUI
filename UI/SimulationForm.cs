@@ -273,7 +273,7 @@ namespace PredictorUI
             var matchId = dataService.CreateNewMatch(match);
 
             MessageBox.Show(matchId.ToString());
-            //matchService.PredictScore(matchInputs);
+            matchService.PredictScore(matchId);
 
         }
     }
