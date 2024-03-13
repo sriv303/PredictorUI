@@ -48,6 +48,9 @@ namespace PredictorUI.Common
             var scoreCard = matchDetails.ScoreCard;
             var balls = JsonConvert.DeserializeObject<List<Ball>>(scoreCard);
 
+            var teamA = JsonConvert.DeserializeObject<List<string>>(matchDetails.StrTeamABatsmen);
+            var teamB = JsonConvert.DeserializeObject<List<string>>(matchDetails.StrTeamBBatsmen);
+
             var firstInningsOvers = balls.Where(b => b.Innings == 1).GroupBy(i => i.OverNumber).Select(s => new Over { Balls = s.ToList() }).ToList();
             var secondInningsOvers = balls.Where(b => b.Innings == 2).GroupBy(i => i.OverNumber).Select(s => new Over { Balls = s.ToList() }).ToList();
 
@@ -56,8 +59,8 @@ namespace PredictorUI.Common
                 MatchDate = matchDetails.MatchDate,
                 MatchId = matchDetails.Id,
                 VenueName = matchDetails.Venue.Name,
-                TeamAInnings = new Innings { Overs = firstInningsOvers },
-                TeamBInnings = new Innings { Overs = secondInningsOvers }
+                TeamAInnings = new Innings { Overs = firstInningsOvers, Team = teamA },
+                TeamBInnings = new Innings { Overs = secondInningsOvers, Team = teamB }
             };
 
             return matchReport;

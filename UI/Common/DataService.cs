@@ -1,10 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using Newtonsoft.Json;
 using PredictorUI.Models;
-using System.Drawing;
 using static PredictorUI.Common.ResponseTypes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace PredictorUI.Common
