@@ -6,33 +6,38 @@ using static PredictorUI.Common.ResponseTypes;
 
 namespace PredictorUI.Common
 {
-    internal class DataService : IDataService
+    internal class DataService
     {
 
         private readonly string connectionString = @"Data Source=C:\Users\Abhi\Documents\Schoolwork\Computer Science\ScorePredictor\PredictorUI\Database\CricketPredictorDB.db;";
-        public bool AuthenticateUser(string username, string password)
+        public User? AuthenticateUser(string username, string password)
         {
+            User? user = null;
             try
             {
                 using (SqliteConnection conn = new SqliteConnection(connectionString))
                 {
                     conn.Open();
-                    var query = "SELECT COUNT(1) FROM USERACCOUNTS WHERE USERNAME=@USERNAME AND PASSWORD=@PASSWORD";
+                    var query = "SELECT id, userName, email, password, isAdmin FROM USERACCOUNTS WHERE USERNAME=@USERNAME AND PASSWORD=@PASSWORD";
 
                     var selectCommand = new SqliteCommand(query, conn);
                     selectCommand.Parameters.AddWithValue("@USERNAME", username);
                     selectCommand.Parameters.AddWithValue("@PASSWORD", password.Encrypt());
 
-                    var result = selectCommand.ExecuteScalar();
+                    var reader = selectCommand.ExecuteReader();
 
+                    while (reader.Read())
+                    {
+                        user = new User(reader);
+                    }
                     conn.Close();
 
-                    return result != null && (long)result == 1;
+                    return user;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                return false;
+                throw;
             }
         }
 
@@ -40,39 +45,44 @@ namespace PredictorUI.Common
         {
             try
             {
+
+                //Register new user and return success/which error has occurred.
                 using (SqliteConnection conn = new SqliteConnection(connectionString))
                 {
                     conn.Open();
-                    // You can execute SQL commands here using SQLiteCommand
+                    // Defining queries
                     var userExistQuery = "SELECT COUNT(1) FROM USERACCOUNTS WHERE USERNAME=@USERNAME;";
                     var userSelectCommand = new SqliteCommand(userExistQuery, conn);
                     userSelectCommand.Parameters.AddWithValue("@USERNAME", username);
                     var userResult = userSelectCommand.ExecuteScalar();
+                    //Executing queries
 
                     if (userResult == null || (long)userResult > 0)
                     {
-
+                        //Checking if username already in database
                         conn.Close();
                         return RegistrationResponseTypes.DuplicateUsername;
                     }
 
-                    var emailExistQuery = "SELECT COUNT(1) FROM USERACCONTS WHERE EMAIL = @EMAIL";
+                    var emailExistQuery = "SELECT COUNT(1) FROM USERACCOUNTS WHERE EMAIL = @EMAIL";
                     var emailSelectCommand = new SqliteCommand(emailExistQuery, conn);
                     emailSelectCommand.Parameters.AddWithValue("@EMAIL", email);
                     var emailResult = emailSelectCommand.ExecuteScalar();
                     if (emailResult == null || (long)emailResult > 0)
                     {
+                        //Checking if email already in database
                         conn.Close();
                         return RegistrationResponseTypes.DuplicateEmail;
                     }
 
 
                     //insert new user account into database//
-                    var insertQuery = "INSERT INTO USERACCOUNTS VALUES (NULL, @USERNAME, @PASSWORD, @EMAIL)";
+                    var insertQuery = "INSERT INTO USERACCOUNTS VALUES (NULL, @USERNAME, @PASSWORD, @EMAIL, 0)";
                     var insertCommand = new SqliteCommand(insertQuery, conn);
                     insertCommand.Parameters.AddWithValue("@USERNAME", username);
                     insertCommand.Parameters.AddWithValue("@PASSWORD", password.Encrypt());
                     insertCommand.Parameters.AddWithValue("@EMAIL", email);
+                    //Adding params
                     insertCommand.ExecuteNonQuery();
                     conn.Close();
                     return RegistrationResponseTypes.Success;
@@ -225,7 +235,45 @@ namespace PredictorUI.Common
 
         }
 
-        public List<MatchDetails> SearchMatches(int? userId, int? venueId, DateTime? fromDate, DateTime? toDate)
+        public MatchDetails? GetMatchDetails(int matchId)
+        {
+            MatchDetails? matchDetails = null;
+            try
+            {
+                using (SqliteConnection conn = new SqliteConnection(connectionString))
+                {
+                    conn.Open();
+
+                    var selectQuery = "SELECT a.id,matchDate,userId,venueId,teamABatsmen,teamABowlers,teamBBatsmen,teamBBowlers, scoreCard,b.name, b.longName, b.country, c.userName " +
+                                        "FROM MatchDetails a inner join Venues b on a.venueId = b.Id " +
+                                        "inner join userAccounts c on c.Id = a.userId where a.Id = @matchId";
+
+                    var searchCommand = new SqliteCommand();
+
+                    searchCommand.Parameters.AddWithValue("@matchId", matchId);
+
+                    searchCommand.Connection = conn;
+                    searchCommand.CommandText = selectQuery;
+
+                    var reader = searchCommand.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        matchDetails = new MatchDetails(reader);
+                    }
+
+                    conn.Close();
+                    return matchDetails;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in getting match Details for {matchId}", ex);
+            }
+
+        }
+
+        public List<MatchDetails> SearchMatches(User user, int? venueId = null, DateTime? fromDate = null, DateTime? toDate = null)
         {
             var matches = new List<MatchDetails>();
             try
@@ -234,16 +282,17 @@ namespace PredictorUI.Common
                 {
                     conn.Open();
 
-                    var selectQuery = "SELECT a.id,matchDate,userId,venueId,teamABatsmen,teamABowlers,teamBBatsmen,teamBBowlers, scoreCard,b.name, b.longName, b.country " +
-                                        "FROM MatchDetails a inner join Venues b on a.venueId = b.Id where 1=1";
+                    var selectQuery = "SELECT a.id,matchDate,userId,venueId,teamABatsmen,teamABowlers,teamBBatsmen,teamBBowlers, scoreCard,b.name, b.longName, b.country, c.userName " +
+                                        "FROM MatchDetails a inner join Venues b on a.venueId = b.Id " +
+                                        "inner join userAccounts c on c.Id = a.userId where 1 = 1";
 
                     var searchCommand = new SqliteCommand();
 
 
-                    if (userId.HasValue)
+                    if (!user.IsAdmin)
                     {
                         selectQuery += " and userId = @userId";
-                        searchCommand.Parameters.AddWithValue("@userId", userId);
+                        searchCommand.Parameters.AddWithValue("@userId", user.Id);
                     }
                     if (venueId.HasValue)
                     {

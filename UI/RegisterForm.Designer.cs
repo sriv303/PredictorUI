@@ -222,6 +222,7 @@
             Controls.Add(txt_UserName);
             Name = "RegisterForm";
             Text = "Register";
+            FormClosed += RegisterForm_FormClosed;
             Load += RegisterForm_Load;
             ResumeLayout(false);
             PerformLayout();

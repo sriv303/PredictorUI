@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             cmbAvailablePlayers1 = new ComboBox();
             btnAddPlayer1 = new Button();
             dgvSelectedPlayers1 = new DataGridView();
@@ -42,6 +43,8 @@
             btnAutoSelect = new Button();
             cmbVenue = new ComboBox();
             lblVenue = new Label();
+            btnClear = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -177,7 +180,7 @@
             btnConfirmSelection.BackColor = Color.Green;
             btnConfirmSelection.Enabled = false;
             btnConfirmSelection.ForeColor = SystemColors.ButtonFace;
-            btnConfirmSelection.Location = new Point(644, 629);
+            btnConfirmSelection.Location = new Point(574, 629);
             btnConfirmSelection.Name = "btnConfirmSelection";
             btnConfirmSelection.Size = new Size(164, 57);
             btnConfirmSelection.TabIndex = 12;
@@ -189,7 +192,7 @@
             // 
             btnAutoSelect.BackColor = Color.Green;
             btnAutoSelect.ForeColor = SystemColors.ButtonFace;
-            btnAutoSelect.Location = new Point(444, 629);
+            btnAutoSelect.Location = new Point(387, 629);
             btnAutoSelect.Name = "btnAutoSelect";
             btnAutoSelect.Size = new Size(164, 57);
             btnAutoSelect.TabIndex = 13;
@@ -218,12 +221,23 @@
             lblVenue.TabIndex = 15;
             lblVenue.Text = "Venue";
             // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(761, 629);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(138, 57);
+            btnClear.TabIndex = 16;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
+            // 
             // SimulationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1242, 728);
+            Controls.Add(btnClear);
             Controls.Add(lblVenue);
             Controls.Add(cmbVenue);
             Controls.Add(btnAutoSelect);
@@ -232,6 +246,7 @@
             Controls.Add(groupBox1);
             Name = "SimulationForm";
             Text = "SimulationForm";
+            FormClosed += SimulationForm_FormClosed;
             Load += SimulationForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).EndInit();
             groupBox1.ResumeLayout(false);
@@ -259,5 +274,7 @@
         private Button btnAutoSelect;
         private ComboBox cmbVenue;
         private Label lblVenue;
+        private Button btnClear;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -144,6 +144,7 @@
             MaximizeBox = false;
             Name = "LoginForm";
             Text = "Login";
+            FormClosed += LoginForm_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }

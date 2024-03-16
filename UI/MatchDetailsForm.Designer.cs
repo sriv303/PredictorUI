@@ -68,7 +68,6 @@
             lblMatchDate.Size = new Size(67, 15);
             lblMatchDate.TabIndex = 1;
             lblMatchDate.Text = "13th march";
-            lblMatchDate.Click += lblMatchDate_Click;
             // 
             // lblVenueHeading
             // 
@@ -153,7 +152,6 @@
             lblMatchResult.Size = new Size(73, 15);
             lblMatchResult.TabIndex = 8;
             lblMatchResult.Text = "Match result";
-            lblMatchResult.Click += lblMatchResult_Click;
             // 
             // lblTeamAScore
             // 

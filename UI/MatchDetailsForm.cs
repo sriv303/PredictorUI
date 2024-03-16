@@ -7,21 +7,28 @@ namespace PredictorUI
     public partial class MatchDetailsForm : Form
     {
 
-        private readonly IDataService dataService;
+        private readonly DataService dataService;
         private readonly MatchService matchService;
-        public MatchDetailsForm()
+        private SharedData sharedData;
+        public MatchDetailsForm(SharedData sharedData)
 
         {
             InitializeComponent();
             dataService = new DataService();
             matchService = new MatchService();
+            this.sharedData = sharedData;
         }
 
         private void MatchDetailsForm_Load(object sender, EventArgs e)
         {
-            var matchDetails = dataService.SearchMatches();
+            var matchDetails = dataService.GetMatchDetails(sharedData.MatchId);
 
-            var matchReport = matchService.TranformScoreCard(matchDetails.First());
+            if (matchDetails == null)
+            {
+                MessageBox.Show("Cannot find the match details"); return;
+            }
+
+            var matchReport = matchService.TranformScoreCard(matchDetails);
             dgvBattingCardA.DataSource = new BindingList<BattingStats>(matchReport.TeamAInnings.BattingCard.ToList());
             dgvBattingCardB.DataSource = new BindingList<BattingStats>(matchReport.TeamBInnings.BattingCard.ToList());
             dgvBowlingCardA.DataSource = new BindingList<BowlingStats>(matchReport.TeamAInnings.BowlingCard.ToList());
@@ -37,17 +44,6 @@ namespace PredictorUI
             lblMatchResult.Text = matchReport.Result;
             lblTeamAScore.Text = $"{matchReport.TeamAInnings.InningsTotal}/{matchReport.TeamAInnings.InningsWickets} from {matchReport.TeamAInnings.OversCount} overs";
             lblTeamBScore.Text = $"{matchReport.TeamBInnings.InningsTotal}/{matchReport.TeamBInnings.InningsWickets} from {matchReport.TeamBInnings.OversCount} overs";
-            
-        }
-
-        private void lblMatchResult_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMatchDate_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -3,7 +3,7 @@ using static PredictorUI.Common.ResponseTypes;
 
 namespace PredictorUI.Common
 {
-    public interface IDataService
+    public interface IDataServiceX
     {
         bool AuthenticateUser(string username, string password);
         int CreateNewMatch(MatchDetails details);

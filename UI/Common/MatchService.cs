@@ -34,9 +34,9 @@ namespace PredictorUI.Common
             {
                 using (StreamReader reader = process.StandardOutput)
                 {
-                    string stderr = process.StandardError.ReadToEnd(); // Capture any errors
-                    string result = reader.ReadToEnd(); // Capture the output
-                    return result;
+                    var stderr = process.StandardError.ReadToEnd(); // Capture any errors
+                    var result = reader.ReadToEnd(); // Capture the output
+                    return result.TrimEnd(['\r', '\n']);  //remove new line characters from the output
                 }
             }
         }

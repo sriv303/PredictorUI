@@ -1,4 +1,5 @@
 ﻿using PredictorUI.Common;
+using PredictorUI.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,26 +16,35 @@ namespace PredictorUI
 {
     public partial class RegisterForm : Form
     {
-        private readonly IDataService dataService;
-        public RegisterForm(IDataService dataService)
+        private readonly DataService dataService;
+        private SharedData sharedData;
+        private bool registrationSuccesful = false;
+        public RegisterForm(SharedData sharedData)
         {
             InitializeComponent();
-            this.dataService = dataService;
+            this.dataService = new DataService();
             lbl_UserNameError.Text = lbl_PasswordError.Text = lbl_EmailAddressError.Text = lbl_ConfirmPasswordError.Text = string.Empty;
+            this.sharedData = sharedData;
         }
 
         private void btn_Register_Click(object sender, EventArgs e)
         {
             if (ValidateInputs())
+                //If all inputs are valid
             {
                 var result = dataService.RegisterNewUser(txt_UserName.Text, txt_Password.Text, txt_EmailAddress.Text);
+                //executing query
                 switch (result)
                 {
                     case ResponseTypes.RegistrationResponseTypes.DuplicateUsername:
                         MessageBox.Show("Username already in use");
                         break;
                     case ResponseTypes.RegistrationResponseTypes.Success:
-                        MessageBox.Show("Successfully registered!");
+                        MessageBox.Show("Successfully registered, please login to continue");
+                        var loginForm = new LoginForm(sharedData);
+                        registrationSuccesful = true;
+                        this.Close();
+                        loginForm.Show();
                         break;
                     case ResponseTypes.RegistrationResponseTypes.Failed:
                         MessageBox.Show("Registration failed");
@@ -48,6 +58,8 @@ namespace PredictorUI
         }
 
         private void btn_Clear_Click(object sender, EventArgs e)
+            //Clears values in all fields and error labels. 
+            //Unchecks checkbox and rehides password as *
         {
             dataService.AuthenticateUser("", "");
             txt_UserName.Clear();
@@ -60,16 +72,19 @@ namespace PredictorUI
         }
 
         private bool ValidateInputs()
+            //Makes sure all inputs are in the right format, applying presence and format check
         {
             bool allValid = true;
             lbl_UserNameError.Text = lbl_PasswordError.Text = lbl_EmailAddressError.Text = lbl_ConfirmPasswordError.Text = string.Empty;
 
+            //Username check
             if (!IsValidInput(txt_UserName.Text))
             {
                 lbl_UserNameError.Text = "Username is required";
                 allValid = false;
             }
 
+            //Email check
             if (!IsValidInput(txt_EmailAddress.Text))
             {
                 lbl_EmailAddressError.Text = "Email address is required";
@@ -77,6 +92,7 @@ namespace PredictorUI
             }
             else
             {
+                //Applying regex to check if email is in format john@gmail.com
                 string patternEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
                 if (!Regex.IsMatch(txt_EmailAddress.Text, patternEmail, RegexOptions.IgnoreCase))
                 {
@@ -86,6 +102,7 @@ namespace PredictorUI
 
             }
 
+            //Password check
             if (!IsValidInput(txt_Password.Text))
             {
                 lbl_PasswordError.Text = "Password is required";
@@ -93,6 +110,7 @@ namespace PredictorUI
             }
             else
             {
+                //Applying regex to check if string contains min 8 characters, 1 number and 1 special character
                 string patternPassword = @"^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,15}$";
                 if (!Regex.IsMatch(txt_Password.Text, patternPassword, RegexOptions.IgnoreCase))
                 {
@@ -100,6 +118,7 @@ namespace PredictorUI
                     allValid = false;
                 }
 
+                //Checking password = Confirm Password
                 else if (txt_Password.Text != txt_ConfirmPassword.Text)
                 {
                     lbl_ConfirmPasswordError.Text = "Password does not match";
@@ -132,6 +151,11 @@ namespace PredictorUI
             {
                 txt_Password.PasswordChar = '*';
             }
+        }
+
+        private void RegisterForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!registrationSuccesful)sharedData.WelcomeForm.Show();
         }
     }
 }

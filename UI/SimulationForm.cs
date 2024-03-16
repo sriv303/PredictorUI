@@ -2,6 +2,8 @@
 using PredictorUI.Models;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Metrics;
+using System.Linq;
 
 namespace PredictorUI
 {
@@ -13,13 +15,17 @@ namespace PredictorUI
         private BindingList<Player> selectedPlayersBindings2 = [];
         private AutoCompleteStringCollection aCompl = [];
 
-        private readonly IDataService dataService;
+        private readonly DataService dataService;
         private readonly MatchService matchService;
-        public SimulationForm()
+        private SharedData sharedData;
+        public SimulationForm(SharedData sharedData)
         {
             InitializeComponent();
             this.dataService = new DataService();
             this.matchService = new MatchService();
+            this.sharedData = sharedData;
+            this.sharedData.LastSimulationSuccess = false;
+
         }
 
         private void SimulationForm_Load(object sender, EventArgs e)
@@ -167,7 +173,6 @@ namespace PredictorUI
             aCompl.AddRange(availablePlayersBindings1.Select(p => p.PlayerProfile).ToArray());
 
             cmbAvailablePlayers1.AutoCompleteCustomSource = cmbAvailablePlayers1.AutoCompleteCustomSource = aCompl;
-
         }
 
         private void dgvSelectedPlayers2_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
@@ -182,10 +187,7 @@ namespace PredictorUI
 
         private void btnAutoSelect_Click(object sender, EventArgs e)
         {
-            var matches = dataService.SearchMatches();
-
-            selectedPlayersBindings1.Clear();
-            selectedPlayersBindings2.Clear();
+            ResetSelection();
 
             var rnd = new Random();
             var cnt = 0;
@@ -248,7 +250,6 @@ namespace PredictorUI
                 MessageBox.Show("There are some dulicate players in the auto selection. Please try again");
             }
 
-            //btnConfirmSelection.Enabled = true;
             UpdateControlsState();
         }
 
@@ -266,18 +267,79 @@ namespace PredictorUI
                 TeamABowlers = selectedPlayersBindings1.Where(p => p.IsBowler).Select(p => p.Name).ToArray(),
                 TeamBBatsmen = selectedPlayersBindings2.Select(p => p.Name).ToArray(),
                 TeamBBowlers = selectedPlayersBindings2.Where(p => p.IsBowler).Select(p => p.Name).ToArray(),
-                UserId = 1, //todo
+                UserId = sharedData.User.Id,
                 VenueId = ((Venue)cmbVenue.SelectedItem).Id
             };
 
             var matchId = dataService.CreateNewMatch(match);
+            sharedData.MatchId = matchId;
 
-            MessageBox.Show(matchId.ToString());
             var result = matchService.PredictScore(matchId);
             MessageBox.Show(result);
 
+            if (result != null && result.Equals("Success", StringComparison.CurrentCultureIgnoreCase))
+            {
+                sharedData.LastSimulationSuccess = true;
+                this.Close();
+                var frmMatchHistory = new MatchHistoryForm(sharedData);
+                frmMatchHistory.Show();
+            }
         }
-      
+
+        private void SimulationForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!sharedData.LastSimulationSuccess) sharedData.WelcomeForm.Show();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ResetSelection();
+            cmbVenue.SelectedIndex = -1;
+        }
+
+        private void ResetSelection()
+        {
+            //combine both selected lists
+            var allSelectedPlayers = selectedPlayersBindings1.Select(p => p)
+                .Concat(selectedPlayersBindings2.Select(p => p)).ToList();
+
+            ////clear selected list
+            selectedPlayersBindings1.Clear();
+            selectedPlayersBindings2.Clear();
+
+            foreach (var item in allSelectedPlayers)
+            {
+                availablePlayersBindings1.Add(item);
+                availablePlayersBindings2.Add(item);
+            }
+
+            UpdateControlsState();
+        }
+
+
+        //private int counter = 80;
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    counter--;
+
+        //    // Perform one step...
+        //    progressBar1.PerformStep();
+
+        //    if (counter == 0)
+        //    {
+        //        timer1.Stop();
+        //    }
+        //}
+        //private void ShowProgress()
+        //{
+
+        //    progressBar1.Maximum = counter * 1000;
+        //    progressBar1.Step = 1000;
+
+        //    timer1 = new System.Windows.Forms.Timer();
+        //    timer1.Tick += new EventHandler(timer1_Tick);
+        //    timer1.Interval = 1000;
+        //    timer1.Start();
+        //}
     }
 }
-    
