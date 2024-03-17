@@ -18,7 +18,6 @@ namespace PredictorUI.Models
             Id = reader.GetInt32(0);
             UserName = reader.GetString(1);
             Email = reader.GetString(2);
-            IsAdmin = false;
             Password = reader.GetString(3);
             IsAdmin=reader.GetBoolean(4);
         }

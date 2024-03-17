@@ -49,7 +49,7 @@
             // txt_UserName
             // 
             txt_UserName.Location = new Point(238, 162);
-            txt_UserName.MaxLength = 15;
+            txt_UserName.MaxLength = 30;
             txt_UserName.Name = "txt_UserName";
             txt_UserName.PlaceholderText = "sriv123";
             txt_UserName.Size = new Size(259, 23);

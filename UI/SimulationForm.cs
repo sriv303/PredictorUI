@@ -30,12 +30,14 @@ namespace PredictorUI
 
         private void SimulationForm_Load(object sender, EventArgs e)
         {
+            //Adding venues to venue dropdown
             var venues = dataService.GetVenues();
             cmbVenue.DataSource = venues;
             cmbVenue.ValueMember = "Id";
             cmbVenue.DisplayMember = "Profile";
             cmbVenue.SelectedIndex = -1;
 
+           //Adding players to players dropdown
             var players = dataService.SearchPlayers("");
 
             foreach (var player in players)
@@ -44,6 +46,7 @@ namespace PredictorUI
                 availablePlayersBindings2.Add(player);
             }
 
+            //Adding player profiles to autocomplete source
             var playerNames = players.Select(p => p.PlayerProfile).ToArray();
             aCompl.AddRange(playerNames);
 
@@ -55,15 +58,16 @@ namespace PredictorUI
             btnAddPlayer1.Enabled = cmbAvailablePlayers1.SelectedIndex != -1;
             btnAddPlayer2.Enabled = cmbAvailablePlayers2.SelectedIndex != -1;
 
-            this.dgvSelectedPlayers1.Columns["Name"].SortMode = DataGridViewColumnSortMode.Automatic;
+            dgvSelectedPlayers1.Columns["Name"].SortMode = DataGridViewColumnSortMode.Automatic;
         }
 
         private void btnAddPlayer1_Click(object sender, EventArgs e)
         {
-            var selectedPlayer = (Models.Player)(cmbAvailablePlayers1.SelectedItem);
+            //Add player to team A
+            var selectedPlayer = (Player)cmbAvailablePlayers1.SelectedItem;
             int cntBowlers = selectedPlayersBindings1.Count(p => p.IsBowler || p.IsAllrounder);
             int cntBatsmen = selectedPlayersBindings1.Count(p => p.IsBatsman && !p.IsBowler);
-
+            //Making sure that max 6 batsmen selected
             if (cntBatsmen >= 6 && selectedPlayer.IsBatsman && !selectedPlayer.IsBowler)
             {
                 MessageBox.Show("Cannot add more than 6 batsmen");
@@ -85,6 +89,7 @@ namespace PredictorUI
 
         private void dgvSelectedPlayers1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
+            //Removing player from selection, ensuring only 1 player is selected to remove
             if (dgvSelectedPlayers1.SelectedRows.Count == 1)
             {
                 availablePlayersBindings1.Add((Player)dgvSelectedPlayers1.SelectedRows[0].DataBoundItem);
@@ -137,12 +142,15 @@ namespace PredictorUI
         }
 
         private void InitialiseControls(int team)
+            //Initialising all controls, and setting data sources and auto complete sources
         {
+            //setting combobox and player lists for each team
             var comboBox = team == 1 ? cmbAvailablePlayers1 : cmbAvailablePlayers2;
             var dataGridView = team == 1 ? dgvSelectedPlayers1 : dgvSelectedPlayers2;
             var availablePlayers = team == 1 ? availablePlayersBindings1 : availablePlayersBindings2;
             var selectedPlayers = team == 1 ? selectedPlayersBindings1 : selectedPlayersBindings2;
 
+            //Setting autocomplete mode and acompl as source, and available players as data source.
             comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             comboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             comboBox.Items.Clear();
@@ -151,6 +159,7 @@ namespace PredictorUI
             comboBox.DisplayMember = "PlayerProfile";
             comboBox.AutoCompleteCustomSource = aCompl;
 
+            //Setting data grid view to show selected players, and removing columns that should not be seen.
             dataGridView.DataSource = selectedPlayers;
             dataGridView.Columns.Remove("PlayerProfile");
             dataGridView.Columns.Remove("Id");
@@ -160,8 +169,11 @@ namespace PredictorUI
         }
         private void UpdateControlsState()
         {
+            //Reset entire form as it initially was except data grid view.
+
             cmbAvailablePlayers1.SelectedIndex = -1;
             cmbAvailablePlayers2.SelectedIndex = -1;
+            //Enable confirm selection if criteria 
             int cntPlayers1 = selectedPlayersBindings1.Count;
             int cntPlayers2 = selectedPlayersBindings2.Count;
             btnConfirmSelection.Enabled = (cntPlayers1 == 11 && cntPlayers2 == 11 && cmbVenue.SelectedIndex != -1);

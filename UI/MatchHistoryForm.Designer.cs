@@ -39,8 +39,6 @@
             dgvMatchHistory.AllowUserToDeleteRows = false;
             dgvMatchHistory.AllowUserToResizeColumns = false;
             dgvMatchHistory.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
-            dgvMatchHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvMatchHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMatchHistory.Location = new Point(28, 56);
             dgvMatchHistory.Name = "dgvMatchHistory";
@@ -52,7 +50,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(688, 386);
+            ClientSize = new Size(652, 386);
             Controls.Add(dgvMatchHistory);
             Name = "MatchHistoryForm";
             Text = "MatchHistory";

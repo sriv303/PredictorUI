@@ -24,14 +24,18 @@ namespace PredictorUI.Common
                     selectCommand.Parameters.AddWithValue("@USERNAME", username);
                     selectCommand.Parameters.AddWithValue("@PASSWORD", password.Encrypt());
 
+
+                    //read output from sql query as iterable
                     var reader = selectCommand.ExecuteReader();
 
                     while (reader.Read())
                     {
+                        //adding property to user for every item in iterable
                         user = new User(reader);
                     }
                     conn.Close();
 
+                    //returning user item
                     return user;
                 }
             }
@@ -95,6 +99,7 @@ namespace PredictorUI.Common
         }
 
         public List<Player> SearchPlayers(string playerName, bool isBowler = false)
+            //Searches all players and retrieves player matching autocomplete criteria
         {
             var players = new List<Player>();
 
@@ -168,6 +173,7 @@ namespace PredictorUI.Common
         }
 
         public List<Venue> GetVenues()
+            //Gets list of all venues from database, with country and ids
         {
             var venues = new List<Venue>();
             try
