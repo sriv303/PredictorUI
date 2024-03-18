@@ -206,6 +206,7 @@ namespace PredictorUI.Common
 
         public int CreateNewMatch(MatchDetails details)
         {
+            //create a new match record with parameter as an instance of match details
             try
             {
                 using (SqliteConnection conn = new SqliteConnection(connectionString))
@@ -227,6 +228,7 @@ namespace PredictorUI.Common
 
                     insertCommand.ExecuteNonQuery();
 
+                    //getting match id of inserted record
                     var idCommand = conn.CreateCommand();
                     idCommand.CommandText = "SELECT last_insert_rowid()";
                     int lastId = Convert.ToInt32(idCommand.ExecuteScalar());

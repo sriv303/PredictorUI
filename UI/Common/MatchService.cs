@@ -20,6 +20,7 @@ namespace PredictorUI.Common
         {
             ProcessStartInfo start = new ProcessStartInfo
             {
+                //specifying parameters for pythons script
                 FileName = "python",
                 Arguments = string.Format("\"{0}\" \"{1}\"", $"{workingDirectory}\\startup.py", matchId),
                 UseShellExecute = false,
@@ -42,17 +43,25 @@ namespace PredictorUI.Common
         }
 
         public MatchReport TranformScoreCard(MatchDetails matchDetails)
+
+        //returning type match report
         {
 
 
             var scoreCard = matchDetails.ScoreCard;
             var balls = JsonConvert.DeserializeObject<List<Ball>>(scoreCard);
+            //deserializing scorecard json string into list of ball objects
 
             var teamA = JsonConvert.DeserializeObject<List<string>>(matchDetails.StrTeamABatsmen);
+            //Deseralizing team a json string into list of player names
             var teamB = JsonConvert.DeserializeObject<List<string>>(matchDetails.StrTeamBBatsmen);
+            //Deseralizing team b json string into list of player names
+
 
             var firstInningsOvers = balls.Where(b => b.Innings == 1).GroupBy(i => i.OverNumber).Select(s => new Over { Balls = s.ToList() }).ToList();
+            //Getting all balls inthe first innings and converting them to over objects
             var secondInningsOvers = balls.Where(b => b.Innings == 2).GroupBy(i => i.OverNumber).Select(s => new Over { Balls = s.ToList() }).ToList();
+            //Getting all balls inthe second innings and converting them to over objects
 
             var matchReport = new MatchReport
             {

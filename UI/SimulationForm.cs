@@ -271,8 +271,10 @@ namespace PredictorUI
         }
 
         private void btnConfirmSelection_Click(object sender, EventArgs e)
+            //Runs when confirm selection clicked 
         {
             var match = new MatchDetails
+            //Create new match object
             {
                 MatchDate = DateTime.Now,
                 TeamABatsmen = selectedPlayersBindings1.Select(p => p.Name).ToArray(),
@@ -281,12 +283,14 @@ namespace PredictorUI
                 TeamBBowlers = selectedPlayersBindings2.Where(p => p.IsBowler).Select(p => p.Name).ToArray(),
                 UserId = sharedData.User.Id,
                 VenueId = ((Venue)cmbVenue.SelectedItem).Id
+                //specify attributes
             };
 
             var matchId = dataService.CreateNewMatch(match);
             sharedData.MatchId = matchId;
 
             var result = matchService.PredictScore(matchId);
+            //store result from python
             MessageBox.Show(result);
 
             if (result != null && result.Equals("Success", StringComparison.CurrentCultureIgnoreCase))

@@ -6,7 +6,7 @@
         public decimal Runs { get; }
         public decimal BallsFaced { get; set; }
         public bool IsOut { get; }
-        public string? Bowler { get; }
+        public string? Bowler { get; }//which bowler got them out
 
         public decimal StrikeRate => BallsFaced == 0 ? 0 : Math.Round(Runs * 100 / BallsFaced, 2);
 
