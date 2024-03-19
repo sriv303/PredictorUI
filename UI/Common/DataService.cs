@@ -10,6 +10,7 @@ namespace PredictorUI.Common
     {
 
         private readonly string connectionString = @"Data Source=C:\Users\Abhi\Documents\Schoolwork\Computer Science\ScorePredictor\PredictorUI\Database\CricketPredictorDB.db;";
+        //define as path to database
         public User? AuthenticateUser(string username, string password)
         {
             User? user = null;

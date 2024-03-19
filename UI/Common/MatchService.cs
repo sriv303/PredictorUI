@@ -7,6 +7,7 @@ namespace PredictorUI.Common
     public class MatchService
     {
         string workingDirectory = "C:\\Users\\Abhi\\Documents\\Schoolwork\\Computer Science\\ScorePredictor\\Server";
+        //put working directory as directory of server folder
         public string PredictScore(int id)
         {
             var settings = new JsonSerializerSettings
