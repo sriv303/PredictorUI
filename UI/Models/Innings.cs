@@ -23,11 +23,11 @@ namespace PredictorUI.Models
                                                                         p.Count(),//balls faced
                                                                         p.Any(b => b.IsWicket),//boolean if wicket
                                                                         p.FirstOrDefault(b => b.IsWicket)?.Bowler)).ToList();//convert bowler and iswicket to combined string
-                                                                        //bowler null when no wicket has fallen
+                                                                                                                             //bowler null when no wicket has fallen
 
-                var unPlayed = Team.Except(batters.Select(b => b.Player));
+                var unPlayed = Team.Except(batters.Select(b => b.Player));//getting players who didnt bat
 
-                batters.AddRange(unPlayed.Select(p => new BattingStats(p, 0, 0, false, null)));
+                batters.AddRange(unPlayed.Select(p => new BattingStats(p, 0, 0, false, null)));//adding 0/null values for players who didnt bat inside data grid view
 
                 return batters;
             }
