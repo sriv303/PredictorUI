@@ -41,7 +41,7 @@
             // 
             // btn_Login
             // 
-            btn_Login.Font = new Font("Segoe UI", 9.75F);
+            btn_Login.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Login.ForeColor = SystemColors.Highlight;
             btn_Login.Location = new Point(145, 244);
             btn_Login.Name = "btn_Login";
@@ -53,7 +53,7 @@
             // 
             // btn_Clear
             // 
-            btn_Clear.Font = new Font("Segoe UI", 9.75F);
+            btn_Clear.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Clear.ForeColor = SystemColors.Highlight;
             btn_Clear.Location = new Point(379, 244);
             btn_Clear.Name = "btn_Clear";
@@ -66,48 +66,48 @@
             // lbl_UserName
             // 
             lbl_UserName.AutoSize = true;
-            lbl_UserName.Font = new Font("Segoe UI", 9.75F);
+            lbl_UserName.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_UserName.Location = new Point(153, 90);
             lbl_UserName.Name = "lbl_UserName";
-            lbl_UserName.Size = new Size(67, 17);
+            lbl_UserName.Size = new Size(69, 17);
             lbl_UserName.TabIndex = 2;
             lbl_UserName.Text = "Username";
             // 
             // lbl_Password
             // 
             lbl_Password.AutoSize = true;
-            lbl_Password.Font = new Font("Segoe UI", 9.75F);
+            lbl_Password.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_Password.Location = new Point(153, 144);
             lbl_Password.Name = "lbl_Password";
-            lbl_Password.Size = new Size(64, 17);
+            lbl_Password.Size = new Size(66, 17);
             lbl_Password.TabIndex = 3;
             lbl_Password.Text = "Password";
             // 
             // lbl_UsernameError
             // 
             lbl_UsernameError.AutoSize = true;
-            lbl_UsernameError.Font = new Font("Segoe UI", 9.75F);
+            lbl_UsernameError.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_UsernameError.ForeColor = Color.Red;
             lbl_UsernameError.Location = new Point(458, 93);
             lbl_UsernameError.Name = "lbl_UsernameError";
-            lbl_UsernameError.Size = new Size(65, 17);
+            lbl_UsernameError.Size = new Size(68, 17);
             lbl_UsernameError.TabIndex = 4;
             lbl_UsernameError.Text = "username";
             // 
             // lbl_PasswordError
             // 
             lbl_PasswordError.AutoSize = true;
-            lbl_PasswordError.Font = new Font("Segoe UI", 9.75F);
+            lbl_PasswordError.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_PasswordError.ForeColor = Color.Red;
             lbl_PasswordError.Location = new Point(458, 149);
             lbl_PasswordError.Name = "lbl_PasswordError";
-            lbl_PasswordError.Size = new Size(65, 17);
+            lbl_PasswordError.Size = new Size(66, 17);
             lbl_PasswordError.TabIndex = 5;
             lbl_PasswordError.Text = "password";
             // 
             // txt_Username
             // 
-            txt_Username.Font = new Font("Segoe UI", 9.75F);
+            txt_Username.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_Username.Location = new Point(246, 90);
             txt_Username.MaxLength = 15;
             txt_Username.Name = "txt_Username";
@@ -117,7 +117,7 @@
             // 
             // txt_Password
             // 
-            txt_Password.Font = new Font("Segoe UI", 9.75F);
+            txt_Password.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_Password.Location = new Point(246, 141);
             txt_Password.MaxLength = 15;
             txt_Password.Name = "txt_Password";
@@ -128,10 +128,10 @@
             // chk_ShowPassword
             // 
             chk_ShowPassword.AutoSize = true;
-            chk_ShowPassword.Font = new Font("Segoe UI", 9.75F);
+            chk_ShowPassword.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             chk_ShowPassword.Location = new Point(153, 187);
             chk_ShowPassword.Name = "chk_ShowPassword";
-            chk_ShowPassword.Size = new Size(119, 21);
+            chk_ShowPassword.Size = new Size(122, 21);
             chk_ShowPassword.TabIndex = 8;
             chk_ShowPassword.Text = "Show password";
             chk_ShowPassword.UseVisualStyleBackColor = true;

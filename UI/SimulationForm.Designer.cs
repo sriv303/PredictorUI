@@ -45,6 +45,7 @@
             lblVenue = new Label();
             btnClear = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
+            btnHelp = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -63,7 +64,8 @@
             // 
             // btnAddPlayer1
             // 
-            btnAddPlayer1.Font = new Font("Segoe UI", 9.75F);
+            btnAddPlayer1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddPlayer1.ForeColor = SystemColors.Highlight;
             btnAddPlayer1.Location = new Point(355, 62);
             btnAddPlayer1.Name = "btnAddPlayer1";
             btnAddPlayer1.Size = new Size(75, 23);
@@ -79,14 +81,16 @@
             dgvSelectedPlayers1.AllowUserToResizeColumns = false;
             dgvSelectedPlayers1.AllowUserToResizeRows = false;
             dgvSelectedPlayers1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSelectedPlayers1.BackgroundColor = Color.LightSteelBlue;
             dgvSelectedPlayers1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSelectedPlayers1.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvSelectedPlayers1.GridColor = Color.Black;
             dgvSelectedPlayers1.Location = new Point(21, 129);
             dgvSelectedPlayers1.MultiSelect = false;
             dgvSelectedPlayers1.Name = "dgvSelectedPlayers1";
             dgvSelectedPlayers1.ReadOnly = true;
             dgvSelectedPlayers1.ShowEditingIcon = false;
-            dgvSelectedPlayers1.Size = new Size(507, 340);
+            dgvSelectedPlayers1.Size = new Size(507, 318);
             dgvSelectedPlayers1.TabIndex = 9;
             dgvSelectedPlayers1.UserDeletedRow += dgvSelectedPlayers1_UserDeletedRow;
             dgvSelectedPlayers1.UserDeletingRow += dgvSelectedPlayers1_UserDeletingRow;
@@ -98,7 +102,7 @@
             groupBox1.Controls.Add(cmbAvailablePlayers1);
             groupBox1.Controls.Add(dgvSelectedPlayers1);
             groupBox1.Controls.Add(btnAddPlayer1);
-            groupBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(32, 118);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(576, 495);
@@ -109,10 +113,10 @@
             // lblPlayerCount1
             // 
             lblPlayerCount1.AutoSize = true;
-            lblPlayerCount1.Font = new Font("Segoe UI", 9.75F);
+            lblPlayerCount1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPlayerCount1.Location = new Point(21, 103);
             lblPlayerCount1.Name = "lblPlayerCount1";
-            lblPlayerCount1.Size = new Size(79, 17);
+            lblPlayerCount1.Size = new Size(84, 17);
             lblPlayerCount1.TabIndex = 10;
             lblPlayerCount1.Text = "Player count";
             // 
@@ -123,7 +127,7 @@
             groupBox2.Controls.Add(cmbAvailablePlayers2);
             groupBox2.Controls.Add(dgvSelectedPlayers2);
             groupBox2.Controls.Add(btnAddPlayer2);
-            groupBox2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(644, 118);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(560, 495);
@@ -136,7 +140,7 @@
             lblPlayerCount2.AutoSize = true;
             lblPlayerCount2.Location = new Point(21, 103);
             lblPlayerCount2.Name = "lblPlayerCount2";
-            lblPlayerCount2.Size = new Size(79, 17);
+            lblPlayerCount2.Size = new Size(84, 17);
             lblPlayerCount2.TabIndex = 10;
             lblPlayerCount2.Text = "Player count";
             // 
@@ -157,21 +161,24 @@
             dgvSelectedPlayers2.AllowUserToResizeColumns = false;
             dgvSelectedPlayers2.AllowUserToResizeRows = false;
             dgvSelectedPlayers2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSelectedPlayers2.BackgroundColor = Color.LightSteelBlue;
             dgvSelectedPlayers2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSelectedPlayers2.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvSelectedPlayers2.GridColor = Color.Black;
             dgvSelectedPlayers2.Location = new Point(21, 129);
             dgvSelectedPlayers2.MultiSelect = false;
             dgvSelectedPlayers2.Name = "dgvSelectedPlayers2";
             dgvSelectedPlayers2.ReadOnly = true;
             dgvSelectedPlayers2.ShowEditingIcon = false;
-            dgvSelectedPlayers2.Size = new Size(487, 340);
+            dgvSelectedPlayers2.Size = new Size(487, 318);
             dgvSelectedPlayers2.TabIndex = 9;
             dgvSelectedPlayers2.UserDeletedRow += dgvSelectedPlayers2_UserDeletedRow;
             dgvSelectedPlayers2.UserDeletingRow += dgvSelectedPlayers2_UserDeletingRow;
             // 
             // btnAddPlayer2
             // 
-            btnAddPlayer2.Font = new Font("Segoe UI", 9.75F);
+            btnAddPlayer2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddPlayer2.ForeColor = SystemColors.Highlight;
             btnAddPlayer2.Location = new Point(355, 62);
             btnAddPlayer2.Name = "btnAddPlayer2";
             btnAddPlayer2.Size = new Size(75, 23);
@@ -184,7 +191,7 @@
             // 
             btnConfirmSelection.BackColor = SystemColors.MenuBar;
             btnConfirmSelection.Enabled = false;
-            btnConfirmSelection.Font = new Font("Segoe UI", 9.75F);
+            btnConfirmSelection.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnConfirmSelection.ForeColor = SystemColors.Highlight;
             btnConfirmSelection.Location = new Point(584, 629);
             btnConfirmSelection.Name = "btnConfirmSelection";
@@ -197,7 +204,7 @@
             // btnAutoSelect
             // 
             btnAutoSelect.BackColor = SystemColors.MenuBar;
-            btnAutoSelect.Font = new Font("Segoe UI", 9.75F);
+            btnAutoSelect.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAutoSelect.ForeColor = SystemColors.Highlight;
             btnAutoSelect.Location = new Point(351, 629);
             btnAutoSelect.Name = "btnAutoSelect";
@@ -211,6 +218,7 @@
             // 
             cmbVenue.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbVenue.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cmbVenue.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cmbVenue.FormattingEnabled = true;
             cmbVenue.Location = new Point(77, 62);
             cmbVenue.Name = "cmbVenue";
@@ -222,17 +230,18 @@
             // lblVenue
             // 
             lblVenue.AutoSize = true;
-            lblVenue.Font = new Font("Segoe UI", 9.75F);
+            lblVenue.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblVenue.Location = new Point(32, 65);
             lblVenue.Name = "lblVenue";
-            lblVenue.Size = new Size(43, 17);
+            lblVenue.Size = new Size(45, 17);
             lblVenue.TabIndex = 15;
             lblVenue.Text = "Venue";
             // 
             // btnClear
             // 
             btnClear.BackColor = SystemColors.MenuBar;
-            btnClear.Font = new Font("Segoe UI", 9.75F);
+            btnClear.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClear.ForeColor = SystemColors.Highlight;
             btnClear.Location = new Point(809, 629);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(209, 59);
@@ -241,12 +250,25 @@
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
+            // btnHelp
+            // 
+            btnHelp.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHelp.ForeColor = SystemColors.Highlight;
+            btnHelp.Location = new Point(1125, 12);
+            btnHelp.Name = "btnHelp";
+            btnHelp.Size = new Size(105, 45);
+            btnHelp.TabIndex = 17;
+            btnHelp.Text = "Help?";
+            btnHelp.UseVisualStyleBackColor = true;
+            btnHelp.Click += btnHelp_Click;
+            // 
             // SimulationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuBar;
             ClientSize = new Size(1242, 728);
+            Controls.Add(btnHelp);
             Controls.Add(btnClear);
             Controls.Add(lblVenue);
             Controls.Add(cmbVenue);
@@ -287,5 +309,6 @@
         private Label lblVenue;
         private Button btnClear;
         private System.Windows.Forms.Timer timer1;
+        private Button btnHelp;
     }
 }

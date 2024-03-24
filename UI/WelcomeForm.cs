@@ -68,7 +68,7 @@ namespace PredictorUI
         private void btnHelp_Click(object sender, EventArgs e)
         {
             var helpForm = new HelpForm();
-            helpForm.Show();
+            helpForm.ShowDialog();
         }
     }
 }

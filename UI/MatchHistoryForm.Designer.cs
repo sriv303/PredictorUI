@@ -38,10 +38,13 @@
             dgvMatchHistory.AllowUserToDeleteRows = false;
             dgvMatchHistory.AllowUserToResizeColumns = false;
             dgvMatchHistory.AllowUserToResizeRows = false;
+            dgvMatchHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMatchHistory.BackgroundColor = Color.LightSteelBlue;
             dgvMatchHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMatchHistory.GridColor = Color.Black;
             dgvMatchHistory.Location = new Point(28, 63);
             dgvMatchHistory.Name = "dgvMatchHistory";
-            dgvMatchHistory.Size = new Size(592, 304);
+            dgvMatchHistory.Size = new Size(554, 304);
             dgvMatchHistory.TabIndex = 0;
             dgvMatchHistory.RowHeaderMouseDoubleClick += dgvMatchHistory_RowHeaderMouseDoubleClick;
             // 
@@ -50,7 +53,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(652, 437);
+            ClientSize = new Size(610, 437);
             Controls.Add(dgvMatchHistory);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "MatchHistoryForm";

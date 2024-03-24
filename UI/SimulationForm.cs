@@ -37,7 +37,7 @@ namespace PredictorUI
             cmbVenue.DisplayMember = "Profile";
             cmbVenue.SelectedIndex = -1;
 
-           //Adding players to players dropdown
+            //Adding players to players dropdown
             var players = dataService.SearchPlayers("");
 
             foreach (var player in players)
@@ -142,7 +142,7 @@ namespace PredictorUI
         }
 
         private void InitialiseControls(int team)
-            //Initialising all controls, and setting data sources and auto complete sources
+        //Initialising all controls, and setting data sources and auto complete sources
         {
             //setting combobox and player lists for each team
             var comboBox = team == 1 ? cmbAvailablePlayers1 : cmbAvailablePlayers2;
@@ -271,7 +271,7 @@ namespace PredictorUI
         }
 
         private void btnConfirmSelection_Click(object sender, EventArgs e)
-            //Runs when confirm selection clicked 
+        //Runs when confirm selection clicked 
         {
             var match = new MatchDetails
             //Create new match object
@@ -330,6 +330,12 @@ namespace PredictorUI
             }
 
             UpdateControlsState();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            var helpForm = new HelpForm();
+            helpForm.ShowDialog();
         }
 
 

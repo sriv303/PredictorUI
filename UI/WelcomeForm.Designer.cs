@@ -37,7 +37,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.Font = new Font("Segoe UI", 9.75F);
+            btnLogin.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = SystemColors.Highlight;
             btnLogin.Location = new Point(115, 103);
             btnLogin.Name = "btnLogin";
@@ -50,7 +50,7 @@
             // 
             // btnRegister
             // 
-            btnRegister.Font = new Font("Segoe UI", 9.75F);
+            btnRegister.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegister.ForeColor = SystemColors.Highlight;
             btnRegister.Location = new Point(414, 103);
             btnRegister.Name = "btnRegister";
@@ -62,7 +62,7 @@
             // 
             // btnSimulate
             // 
-            btnSimulate.Font = new Font("Segoe UI", 9.75F);
+            btnSimulate.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSimulate.ForeColor = SystemColors.Highlight;
             btnSimulate.Location = new Point(115, 242);
             btnSimulate.Name = "btnSimulate";
@@ -74,7 +74,7 @@
             // 
             // btnMatchHistory
             // 
-            btnMatchHistory.Font = new Font("Segoe UI", 9.75F);
+            btnMatchHistory.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMatchHistory.ForeColor = SystemColors.Highlight;
             btnMatchHistory.Location = new Point(414, 242);
             btnMatchHistory.Name = "btnMatchHistory";
@@ -86,7 +86,7 @@
             // 
             // btnHelp
             // 
-            btnHelp.Font = new Font("Segoe UI", 9.75F);
+            btnHelp.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHelp.ForeColor = SystemColors.Highlight;
             btnHelp.Location = new Point(683, 12);
             btnHelp.Name = "btnHelp";
