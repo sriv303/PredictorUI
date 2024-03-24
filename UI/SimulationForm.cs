@@ -114,8 +114,8 @@ namespace PredictorUI
                 selectedPlayersBindings2.Add(selectedPlayer);
                 dgvSelectedPlayers2.DataSource = selectedPlayersBindings2;
 
-                availablePlayersBindings1.Remove(selectedPlayer);
-                availablePlayersBindings2.Remove(selectedPlayer);
+                //availablePlayersBindings1.Remove(selectedPlayer);
+                //availablePlayersBindings2.Remove(selectedPlayer);
             }
 
             UpdateControlsState();

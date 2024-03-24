@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dgvMatchHistory = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dgvMatchHistory).BeginInit();
             SuspendLayout();
@@ -40,20 +39,23 @@
             dgvMatchHistory.AllowUserToResizeColumns = false;
             dgvMatchHistory.AllowUserToResizeRows = false;
             dgvMatchHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMatchHistory.Location = new Point(28, 56);
+            dgvMatchHistory.Location = new Point(28, 63);
             dgvMatchHistory.Name = "dgvMatchHistory";
-            dgvMatchHistory.Size = new Size(592, 268);
+            dgvMatchHistory.Size = new Size(592, 304);
             dgvMatchHistory.TabIndex = 0;
             dgvMatchHistory.RowHeaderMouseDoubleClick += dgvMatchHistory_RowHeaderMouseDoubleClick;
             // 
             // MatchHistoryForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(652, 386);
+            BackColor = SystemColors.Menu;
+            ClientSize = new Size(652, 437);
             Controls.Add(dgvMatchHistory);
+            Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "MatchHistoryForm";
-            Text = "MatchHistory";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Score Predictor - Match History";
             FormClosed += MatchHistoryForm_FormClosed;
             Load += MatchHistoryForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMatchHistory).EndInit();

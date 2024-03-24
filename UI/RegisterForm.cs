@@ -111,7 +111,7 @@ namespace PredictorUI
             else
             {
                 //Applying regex to check if string contains min 8 characters, 1 number and 1 special character
-                string patternPassword = @"^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,15}$";
+                string patternPassword = @"^(?=.*\d)(?=.*[!@#$%^&*-])(?=.*[a-zA-Z]).{8,15}$";
                 if (!Regex.IsMatch(txt_Password.Text, patternPassword, RegexOptions.IgnoreCase))
                 {
                     lbl_PasswordError.Text = "Password too weak";

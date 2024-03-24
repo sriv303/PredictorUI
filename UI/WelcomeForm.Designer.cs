@@ -32,23 +32,29 @@
             btnRegister = new Button();
             btnSimulate = new Button();
             btnMatchHistory = new Button();
+            btnHelp = new Button();
             SuspendLayout();
             // 
             // btnLogin
             // 
+            btnLogin.Font = new Font("Segoe UI", 9.75F);
+            btnLogin.ForeColor = SystemColors.Highlight;
             btnLogin.Location = new Point(115, 103);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(161, 93);
+            btnLogin.Size = new Size(209, 59);
             btnLogin.TabIndex = 0;
+            btnLogin.Tag = "hello";
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += btnLogin_Click;
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(411, 103);
+            btnRegister.Font = new Font("Segoe UI", 9.75F);
+            btnRegister.ForeColor = SystemColors.Highlight;
+            btnRegister.Location = new Point(414, 103);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(158, 93);
+            btnRegister.Size = new Size(209, 59);
             btnRegister.TabIndex = 1;
             btnRegister.Text = "Register";
             btnRegister.UseVisualStyleBackColor = true;
@@ -56,9 +62,11 @@
             // 
             // btnSimulate
             // 
-            btnSimulate.Location = new Point(115, 253);
+            btnSimulate.Font = new Font("Segoe UI", 9.75F);
+            btnSimulate.ForeColor = SystemColors.Highlight;
+            btnSimulate.Location = new Point(115, 242);
             btnSimulate.Name = "btnSimulate";
-            btnSimulate.Size = new Size(161, 88);
+            btnSimulate.Size = new Size(209, 59);
             btnSimulate.TabIndex = 2;
             btnSimulate.Text = "Simulate Match";
             btnSimulate.UseVisualStyleBackColor = true;
@@ -66,25 +74,42 @@
             // 
             // btnMatchHistory
             // 
-            btnMatchHistory.Location = new Point(414, 260);
+            btnMatchHistory.Font = new Font("Segoe UI", 9.75F);
+            btnMatchHistory.ForeColor = SystemColors.Highlight;
+            btnMatchHistory.Location = new Point(414, 242);
             btnMatchHistory.Name = "btnMatchHistory";
-            btnMatchHistory.Size = new Size(155, 81);
+            btnMatchHistory.Size = new Size(209, 59);
             btnMatchHistory.TabIndex = 3;
             btnMatchHistory.Text = "Show Match History";
             btnMatchHistory.UseVisualStyleBackColor = true;
             btnMatchHistory.Click += btnMatchHistory_Click;
             // 
+            // btnHelp
+            // 
+            btnHelp.Font = new Font("Segoe UI", 9.75F);
+            btnHelp.ForeColor = SystemColors.Highlight;
+            btnHelp.Location = new Point(683, 12);
+            btnHelp.Name = "btnHelp";
+            btnHelp.Size = new Size(105, 45);
+            btnHelp.TabIndex = 4;
+            btnHelp.Text = "Help?";
+            btnHelp.UseVisualStyleBackColor = true;
+            btnHelp.Click += btnHelp_Click;
+            // 
             // WelcomeForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = SystemColors.MenuBar;
+            ClientSize = new Size(800, 412);
+            Controls.Add(btnHelp);
             Controls.Add(btnMatchHistory);
             Controls.Add(btnSimulate);
             Controls.Add(btnRegister);
             Controls.Add(btnLogin);
             Name = "WelcomeForm";
-            Text = "WelcomeForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Score Predictor - Welcome";
             FormClosed += WelcomeForm_FormClosed;
             VisibleChanged += WelcomeForm_VisibleChanged;
             ResumeLayout(false);
@@ -96,5 +121,6 @@
         private Button btnRegister;
         private Button btnSimulate;
         private Button btnMatchHistory;
+        private Button btnHelp;
     }
 }

@@ -56,13 +56,14 @@
             cmbAvailablePlayers1.FormattingEnabled = true;
             cmbAvailablePlayers1.Location = new Point(21, 62);
             cmbAvailablePlayers1.Name = "cmbAvailablePlayers1";
-            cmbAvailablePlayers1.Size = new Size(296, 23);
+            cmbAvailablePlayers1.Size = new Size(296, 25);
             cmbAvailablePlayers1.Sorted = true;
             cmbAvailablePlayers1.TabIndex = 0;
             cmbAvailablePlayers1.SelectedIndexChanged += cmbAvailablePlayers1_SelectedIndexChanged;
             // 
             // btnAddPlayer1
             // 
+            btnAddPlayer1.Font = new Font("Segoe UI", 9.75F);
             btnAddPlayer1.Location = new Point(355, 62);
             btnAddPlayer1.Name = "btnAddPlayer1";
             btnAddPlayer1.Size = new Size(75, 23);
@@ -97,6 +98,7 @@
             groupBox1.Controls.Add(cmbAvailablePlayers1);
             groupBox1.Controls.Add(dgvSelectedPlayers1);
             groupBox1.Controls.Add(btnAddPlayer1);
+            groupBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(32, 118);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(576, 495);
@@ -107,9 +109,10 @@
             // lblPlayerCount1
             // 
             lblPlayerCount1.AutoSize = true;
+            lblPlayerCount1.Font = new Font("Segoe UI", 9.75F);
             lblPlayerCount1.Location = new Point(21, 103);
             lblPlayerCount1.Name = "lblPlayerCount1";
-            lblPlayerCount1.Size = new Size(73, 15);
+            lblPlayerCount1.Size = new Size(79, 17);
             lblPlayerCount1.TabIndex = 10;
             lblPlayerCount1.Text = "Player count";
             // 
@@ -120,6 +123,7 @@
             groupBox2.Controls.Add(cmbAvailablePlayers2);
             groupBox2.Controls.Add(dgvSelectedPlayers2);
             groupBox2.Controls.Add(btnAddPlayer2);
+            groupBox2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(644, 118);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(560, 495);
@@ -132,7 +136,7 @@
             lblPlayerCount2.AutoSize = true;
             lblPlayerCount2.Location = new Point(21, 103);
             lblPlayerCount2.Name = "lblPlayerCount2";
-            lblPlayerCount2.Size = new Size(73, 15);
+            lblPlayerCount2.Size = new Size(79, 17);
             lblPlayerCount2.TabIndex = 10;
             lblPlayerCount2.Text = "Player count";
             // 
@@ -141,7 +145,7 @@
             cmbAvailablePlayers2.FormattingEnabled = true;
             cmbAvailablePlayers2.Location = new Point(21, 62);
             cmbAvailablePlayers2.Name = "cmbAvailablePlayers2";
-            cmbAvailablePlayers2.Size = new Size(298, 23);
+            cmbAvailablePlayers2.Size = new Size(298, 25);
             cmbAvailablePlayers2.Sorted = true;
             cmbAvailablePlayers2.TabIndex = 0;
             cmbAvailablePlayers2.SelectedIndexChanged += cmbAvailablePlayers2_SelectedIndexChanged;
@@ -167,6 +171,7 @@
             // 
             // btnAddPlayer2
             // 
+            btnAddPlayer2.Font = new Font("Segoe UI", 9.75F);
             btnAddPlayer2.Location = new Point(355, 62);
             btnAddPlayer2.Name = "btnAddPlayer2";
             btnAddPlayer2.Size = new Size(75, 23);
@@ -179,10 +184,11 @@
             // 
             btnConfirmSelection.BackColor = Color.Green;
             btnConfirmSelection.Enabled = false;
+            btnConfirmSelection.Font = new Font("Segoe UI", 9.75F);
             btnConfirmSelection.ForeColor = SystemColors.ButtonFace;
-            btnConfirmSelection.Location = new Point(574, 629);
+            btnConfirmSelection.Location = new Point(584, 629);
             btnConfirmSelection.Name = "btnConfirmSelection";
-            btnConfirmSelection.Size = new Size(164, 57);
+            btnConfirmSelection.Size = new Size(209, 59);
             btnConfirmSelection.TabIndex = 12;
             btnConfirmSelection.Text = "Confirm Selection";
             btnConfirmSelection.UseVisualStyleBackColor = false;
@@ -191,10 +197,11 @@
             // btnAutoSelect
             // 
             btnAutoSelect.BackColor = Color.Green;
+            btnAutoSelect.Font = new Font("Segoe UI", 9.75F);
             btnAutoSelect.ForeColor = SystemColors.ButtonFace;
-            btnAutoSelect.Location = new Point(387, 629);
+            btnAutoSelect.Location = new Point(351, 629);
             btnAutoSelect.Name = "btnAutoSelect";
-            btnAutoSelect.Size = new Size(164, 57);
+            btnAutoSelect.Size = new Size(209, 59);
             btnAutoSelect.TabIndex = 13;
             btnAutoSelect.Text = "Auto Select Teams";
             btnAutoSelect.UseVisualStyleBackColor = false;
@@ -215,17 +222,19 @@
             // lblVenue
             // 
             lblVenue.AutoSize = true;
+            lblVenue.Font = new Font("Segoe UI", 9.75F);
             lblVenue.Location = new Point(32, 65);
             lblVenue.Name = "lblVenue";
-            lblVenue.Size = new Size(39, 15);
+            lblVenue.Size = new Size(43, 17);
             lblVenue.TabIndex = 15;
             lblVenue.Text = "Venue";
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(761, 629);
+            btnClear.Font = new Font("Segoe UI", 9.75F);
+            btnClear.Location = new Point(809, 629);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(138, 57);
+            btnClear.Size = new Size(209, 59);
             btnClear.TabIndex = 16;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -235,7 +244,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.WhiteSmoke;
+            BackColor = SystemColors.MenuBar;
             ClientSize = new Size(1242, 728);
             Controls.Add(btnClear);
             Controls.Add(lblVenue);
@@ -245,7 +254,8 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "SimulationForm";
-            Text = "SimulationForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Score Predictor - Match Simulation";
             FormClosed += SimulationForm_FormClosed;
             Load += SimulationForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSelectedPlayers1).EndInit();

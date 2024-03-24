@@ -54,36 +54,40 @@
             // lblMatchDateHeading
             // 
             lblMatchDateHeading.AutoSize = true;
-            lblMatchDateHeading.Location = new Point(580, 39);
+            lblMatchDateHeading.Font = new Font("Segoe UI", 9.75F);
+            lblMatchDateHeading.Location = new Point(564, 44);
             lblMatchDateHeading.Name = "lblMatchDateHeading";
-            lblMatchDateHeading.Size = new Size(71, 15);
+            lblMatchDateHeading.Size = new Size(78, 17);
             lblMatchDateHeading.TabIndex = 0;
             lblMatchDateHeading.Text = "Match Date:";
             // 
             // lblMatchDate
             // 
             lblMatchDate.AutoSize = true;
-            lblMatchDate.Location = new Point(653, 39);
+            lblMatchDate.Font = new Font("Segoe UI", 9.75F);
+            lblMatchDate.Location = new Point(648, 44);
             lblMatchDate.Name = "lblMatchDate";
-            lblMatchDate.Size = new Size(67, 15);
+            lblMatchDate.Size = new Size(73, 17);
             lblMatchDate.TabIndex = 1;
             lblMatchDate.Text = "13th march";
             // 
             // lblVenueHeading
             // 
             lblVenueHeading.AutoSize = true;
-            lblVenueHeading.Location = new Point(733, 39);
+            lblVenueHeading.Font = new Font("Segoe UI", 9.75F);
+            lblVenueHeading.Location = new Point(739, 44);
             lblVenueHeading.Name = "lblVenueHeading";
-            lblVenueHeading.Size = new Size(42, 15);
+            lblVenueHeading.Size = new Size(46, 17);
             lblVenueHeading.TabIndex = 2;
             lblVenueHeading.Text = "Venue:";
             // 
             // lblVenue
             // 
             lblVenue.AutoSize = true;
-            lblVenue.Location = new Point(781, 39);
+            lblVenue.Font = new Font("Segoe UI", 9.75F);
+            lblVenue.Location = new Point(787, 44);
             lblVenue.Name = "lblVenue";
-            lblVenue.Size = new Size(79, 15);
+            lblVenue.Size = new Size(90, 17);
             lblVenue.TabIndex = 3;
             lblVenue.Text = "Eden Gardens";
             // 
@@ -96,10 +100,10 @@
             dgvBattingCardA.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBattingCardA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBattingCardA.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dgvBattingCardA.Location = new Point(31, 97);
+            dgvBattingCardA.Location = new Point(31, 110);
             dgvBattingCardA.Name = "dgvBattingCardA";
             dgvBattingCardA.ReadOnly = true;
-            dgvBattingCardA.Size = new Size(600, 300);
+            dgvBattingCardA.Size = new Size(600, 340);
             dgvBattingCardA.TabIndex = 4;
             // 
             // dgvBattingCardB
@@ -110,10 +114,10 @@
             dgvBattingCardB.AllowUserToResizeRows = false;
             dgvBattingCardB.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBattingCardB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBattingCardB.Location = new Point(669, 97);
+            dgvBattingCardB.Location = new Point(669, 110);
             dgvBattingCardB.Name = "dgvBattingCardB";
             dgvBattingCardB.ReadOnly = true;
-            dgvBattingCardB.Size = new Size(600, 300);
+            dgvBattingCardB.Size = new Size(600, 340);
             dgvBattingCardB.TabIndex = 5;
             // 
             // dgvBowlingCardA
@@ -124,10 +128,10 @@
             dgvBowlingCardA.AllowUserToResizeRows = false;
             dgvBowlingCardA.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBowlingCardA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBowlingCardA.Location = new Point(31, 447);
+            dgvBowlingCardA.Location = new Point(31, 507);
             dgvBowlingCardA.Name = "dgvBowlingCardA";
             dgvBowlingCardA.ReadOnly = true;
-            dgvBowlingCardA.Size = new Size(600, 200);
+            dgvBowlingCardA.Size = new Size(600, 227);
             dgvBowlingCardA.TabIndex = 6;
             // 
             // dgvBowlingCardB
@@ -138,98 +142,104 @@
             dgvBowlingCardB.AllowUserToResizeRows = false;
             dgvBowlingCardB.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBowlingCardB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBowlingCardB.Location = new Point(669, 447);
+            dgvBowlingCardB.Location = new Point(669, 507);
             dgvBowlingCardB.Name = "dgvBowlingCardB";
             dgvBowlingCardB.ReadOnly = true;
-            dgvBowlingCardB.Size = new Size(600, 200);
+            dgvBowlingCardB.Size = new Size(600, 227);
             dgvBowlingCardB.TabIndex = 7;
             // 
             // lblMatchResult
             // 
             lblMatchResult.AutoSize = true;
-            lblMatchResult.Location = new Point(615, 683);
+            lblMatchResult.Font = new Font("Segoe UI", 9.75F);
+            lblMatchResult.Location = new Point(615, 774);
             lblMatchResult.Name = "lblMatchResult";
-            lblMatchResult.Size = new Size(73, 15);
+            lblMatchResult.Size = new Size(80, 17);
             lblMatchResult.TabIndex = 8;
             lblMatchResult.Text = "Match result";
             // 
             // lblTeamAScore
             // 
             lblTeamAScore.AutoSize = true;
-            lblTeamAScore.Location = new Point(484, 400);
+            lblTeamAScore.Font = new Font("Segoe UI", 9.75F);
+            lblTeamAScore.Location = new Point(484, 453);
             lblTeamAScore.Name = "lblTeamAScore";
-            lblTeamAScore.Size = new Size(78, 15);
+            lblTeamAScore.Size = new Size(88, 17);
             lblTeamAScore.TabIndex = 9;
             lblTeamAScore.Text = "Team A Score";
             // 
             // lblTeamBScore
             // 
             lblTeamBScore.AutoSize = true;
-            lblTeamBScore.Location = new Point(1116, 400);
+            lblTeamBScore.Font = new Font("Segoe UI", 9.75F);
+            lblTeamBScore.Location = new Point(1116, 453);
             lblTeamBScore.Name = "lblTeamBScore";
-            lblTeamBScore.Size = new Size(77, 15);
+            lblTeamBScore.Size = new Size(87, 17);
             lblTeamBScore.TabIndex = 10;
             lblTeamBScore.Text = "Team B Score";
             // 
             // lblTeamABattingHeading
             // 
             lblTeamABattingHeading.AutoSize = true;
-            lblTeamABattingHeading.Location = new Point(31, 79);
+            lblTeamABattingHeading.Location = new Point(31, 90);
             lblTeamABattingHeading.Name = "lblTeamABattingHeading";
-            lblTeamABattingHeading.Size = new Size(87, 15);
+            lblTeamABattingHeading.Size = new Size(95, 17);
             lblTeamABattingHeading.TabIndex = 11;
             lblTeamABattingHeading.Text = "Team A Batting";
             // 
             // lblTeamBBowlingHeading
             // 
             lblTeamBBowlingHeading.AutoSize = true;
-            lblTeamBBowlingHeading.Location = new Point(31, 429);
+            lblTeamBBowlingHeading.Location = new Point(31, 486);
             lblTeamBBowlingHeading.Name = "lblTeamBBowlingHeading";
-            lblTeamBBowlingHeading.Size = new Size(91, 15);
+            lblTeamBBowlingHeading.Size = new Size(99, 17);
             lblTeamBBowlingHeading.TabIndex = 12;
             lblTeamBBowlingHeading.Text = "Team B Bowling";
             // 
             // lblTeamBBattingHeading
             // 
             lblTeamBBattingHeading.AutoSize = true;
-            lblTeamBBattingHeading.Location = new Point(669, 79);
+            lblTeamBBattingHeading.Location = new Point(689, 90);
             lblTeamBBattingHeading.Name = "lblTeamBBattingHeading";
-            lblTeamBBattingHeading.Size = new Size(86, 15);
+            lblTeamBBattingHeading.Size = new Size(94, 17);
             lblTeamBBattingHeading.TabIndex = 13;
             lblTeamBBattingHeading.Text = "Team B Batting";
             // 
             // lblTeamABowlingHeading
             // 
             lblTeamABowlingHeading.AutoSize = true;
-            lblTeamABowlingHeading.Location = new Point(669, 429);
+            lblTeamABowlingHeading.Location = new Point(669, 486);
             lblTeamABowlingHeading.Name = "lblTeamABowlingHeading";
-            lblTeamABowlingHeading.Size = new Size(92, 15);
+            lblTeamABowlingHeading.Size = new Size(100, 17);
             lblTeamABowlingHeading.TabIndex = 14;
             lblTeamABowlingHeading.Text = "Team A Bowling";
             // 
             // lblMatchIDHeading
             // 
             lblMatchIDHeading.AutoSize = true;
-            lblMatchIDHeading.Location = new Point(471, 39);
+            lblMatchIDHeading.Font = new Font("Segoe UI", 9.75F);
+            lblMatchIDHeading.Location = new Point(465, 44);
             lblMatchIDHeading.Name = "lblMatchIDHeading";
-            lblMatchIDHeading.Size = new Size(61, 15);
+            lblMatchIDHeading.Size = new Size(67, 17);
             lblMatchIDHeading.TabIndex = 15;
             lblMatchIDHeading.Text = "Match ID: ";
             // 
             // lblMatchID
             // 
             lblMatchID.AutoSize = true;
-            lblMatchID.Location = new Point(538, 39);
+            lblMatchID.Font = new Font("Segoe UI", 9.75F);
+            lblMatchID.Location = new Point(528, 44);
             lblMatchID.Name = "lblMatchID";
-            lblMatchID.Size = new Size(18, 15);
+            lblMatchID.Size = new Size(20, 17);
             lblMatchID.TabIndex = 16;
             lblMatchID.Text = "-1";
             // 
             // MatchDetailsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1302, 726);
+            BackColor = SystemColors.Menu;
+            ClientSize = new Size(1302, 823);
             Controls.Add(lblMatchID);
             Controls.Add(lblMatchIDHeading);
             Controls.Add(lblTeamABowlingHeading);
@@ -247,8 +257,10 @@
             Controls.Add(lblVenueHeading);
             Controls.Add(lblMatchDate);
             Controls.Add(lblMatchDateHeading);
+            Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "MatchDetailsForm";
-            Text = "MatchDetailsForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Score Predictor - Match Details";
             Load += MatchDetailsForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvBattingCardA).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvBattingCardB).EndInit();

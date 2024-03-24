@@ -64,6 +64,11 @@ namespace PredictorUI
             btnLogin.Visible = btnRegister.Visible = !sharedData.UserLoggedIn;
             btnSimulate.Visible = btnMatchHistory.Visible = sharedData.UserLoggedIn;
         }
-     
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            var helpForm = new HelpForm();
+            helpForm.Show();
+        }
     }
 }
