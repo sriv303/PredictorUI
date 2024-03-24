@@ -45,7 +45,7 @@
             btn_Login.ForeColor = SystemColors.Highlight;
             btn_Login.Location = new Point(145, 244);
             btn_Login.Name = "btn_Login";
-            btn_Login.Size = new Size(205, 67);
+            btn_Login.Size = new Size(209, 59);
             btn_Login.TabIndex = 0;
             btn_Login.Text = "Login";
             btn_Login.UseVisualStyleBackColor = true;
@@ -57,7 +57,7 @@
             btn_Clear.ForeColor = SystemColors.Highlight;
             btn_Clear.Location = new Point(379, 244);
             btn_Clear.Name = "btn_Clear";
-            btn_Clear.Size = new Size(205, 67);
+            btn_Clear.Size = new Size(209, 59);
             btn_Clear.TabIndex = 1;
             btn_Clear.Text = "Clear";
             btn_Clear.UseVisualStyleBackColor = true;

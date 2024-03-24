@@ -182,10 +182,10 @@
             // 
             // btnConfirmSelection
             // 
-            btnConfirmSelection.BackColor = Color.Green;
+            btnConfirmSelection.BackColor = SystemColors.MenuBar;
             btnConfirmSelection.Enabled = false;
             btnConfirmSelection.Font = new Font("Segoe UI", 9.75F);
-            btnConfirmSelection.ForeColor = SystemColors.ButtonFace;
+            btnConfirmSelection.ForeColor = SystemColors.Highlight;
             btnConfirmSelection.Location = new Point(584, 629);
             btnConfirmSelection.Name = "btnConfirmSelection";
             btnConfirmSelection.Size = new Size(209, 59);
@@ -196,9 +196,9 @@
             // 
             // btnAutoSelect
             // 
-            btnAutoSelect.BackColor = Color.Green;
+            btnAutoSelect.BackColor = SystemColors.MenuBar;
             btnAutoSelect.Font = new Font("Segoe UI", 9.75F);
-            btnAutoSelect.ForeColor = SystemColors.ButtonFace;
+            btnAutoSelect.ForeColor = SystemColors.Highlight;
             btnAutoSelect.Location = new Point(351, 629);
             btnAutoSelect.Name = "btnAutoSelect";
             btnAutoSelect.Size = new Size(209, 59);
@@ -231,13 +231,14 @@
             // 
             // btnClear
             // 
+            btnClear.BackColor = SystemColors.MenuBar;
             btnClear.Font = new Font("Segoe UI", 9.75F);
             btnClear.Location = new Point(809, 629);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(209, 59);
             btnClear.TabIndex = 16;
             btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = true;
+            btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
             // SimulationForm
